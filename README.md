@@ -1,2 +1,3 @@
 # musicmood
-Final project - Music matchmaking app
+
+Final project - Music matchmaking application
