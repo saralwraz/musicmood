@@ -15,10 +15,10 @@ function Header({ handleRegisterModal, handleLoginModal, isLoggedIn }) {
       <div className="header__right">
         <nav className="header__nav">
           <Link to="/" className="header__link">
-            <p className="header__home">Home</p>
+            <p className="header__home">home</p>
           </Link>
           <Link to="/about" className="header__link">
-            <p className="header__about">About</p>
+            <p className="header__about">about</p>
           </Link>
         </nav>
 
