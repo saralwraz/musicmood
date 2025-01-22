@@ -1,25 +1,24 @@
 import { useState } from "react";
-import Header from "../Header/Header";
+import Header from "/src/components/Header/Header.jsx";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [activeModal, setActiveModal] = useState("");
+  const [selectedCard, setSelectedCard] = useState({});
 
-  const handleRegisterModal = () => {
-    // TODO: Implement register modal
-    console.log("Register modal clicked");
-  };
-
-  const handleLoginModal = () => {
-    // TODO: Implement login modal
-    console.log("Login modal clicked");
+  // Modal Handlers
+  const openModal = (modal) => setActiveModal(modal);
+  const closeModal = () => {
+    setActiveModal("");
+    setSelectedCard({});
   };
 
   return (
     <div className="app">
       <Header
         isLoggedIn={isLoggedIn}
-        handleRegisterModal={handleRegisterModal}
-        handleLoginModal={handleLoginModal}
+        handleLoginModal={() => openModal("login")}
+        handleSignUpModal={() => openModal("signup")}
       />
       <main className="main">{/* Add your main content here */}</main>
     </div>

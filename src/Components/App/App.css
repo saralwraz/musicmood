@@ -1,11 +1,19 @@
 .app {
-  background-color: #ef5b5b;
-  padding: 0 20px;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #23001e;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: "Cormorant Garamond", Times, serif;
   font-weight: 500;
+  background: url("../../assets/musicmood-background.jpg");
 }
 
 .app__content {
-  max-width: 1360px;
+  width: 100%;
+  max-width: 1280px;
   margin: 0 auto;
+  padding: 20px;
 }

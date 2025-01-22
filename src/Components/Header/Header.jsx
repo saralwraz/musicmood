@@ -4,7 +4,7 @@ import logo from "../../assets/musicmood.png";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 
-function Header({ handleRegisterModal, handleLoginModal, isLoggedIn }) {
+function Header({ handleSignUpModal, handleLoginModal, isLoggedIn }) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
@@ -40,18 +40,18 @@ function Header({ handleRegisterModal, handleLoginModal, isLoggedIn }) {
         ) : (
           <div className="header__auth-buttons">
             <button
-              onClick={handleRegisterModal}
+              onClick={handleSignUpModal}
               className="header__signup"
               type="button"
             >
-              Sign Up
+              sign up
             </button>
             <button
               onClick={handleLoginModal}
               className="header__login"
               type="button"
             >
-              Log In
+              log in
             </button>
           </div>
         )}
