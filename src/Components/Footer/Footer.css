@@ -1,0 +1,20 @@
+.footer {
+  font-family: "Roboto";
+  font-size: 22px;
+  font-weight: 400;
+  justify-content: space-between;
+}
+
+.footer__text {
+  color: #ffba49;
+}
+
+.footer__links {
+  height: 24px;
+  width: 24px;
+}
+
+.footer__facebook {
+  height: 24px;
+  width: 24px;
+}
