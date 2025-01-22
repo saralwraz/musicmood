@@ -1,0 +1,11 @@
+.app {
+  background-color: #ef5b5b;
+  padding: 0 20px;
+  font-family: "Comorant Garamond", Times, serif;
+  font-weight: 700;
+}
+
+.app__content {
+  max-width: 1360px;
+  margin: 0 auto;
+}
