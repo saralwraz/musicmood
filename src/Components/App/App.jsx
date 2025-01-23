@@ -4,6 +4,10 @@ import { useState } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 
+//Modals
+import LoginModal from "../LoginModal/LoginModal";
+import SignUpModal from "../SignUpModal/SignUpModal.jsx";
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeModal, setActiveModal] = useState("");
@@ -16,6 +20,31 @@ function App() {
     setSelectedCard({});
   };
 
+  //Auth handlers
+  const handleLogin = ({ email, password }) => {
+    logIn({ email, password })
+      .then((data) => {
+        if (!data.token) throw new Error("Token not received");
+        localStorage.setItem("jwt", data.token);
+        return getUserProfile(data.token);
+      })
+      .then((user) => {
+        setCurrentUser(user);
+        setIsLoggedIn(true);
+        navigate("/profile");
+        closeModal();
+      })
+      .catch((err) => console.error("Login error:", err));
+  };
+
+  const handleSignUp = (userData) => {
+    signup(userData)
+      .then(() =>
+        handleLogin({ email: userData.email, password: userData.password })
+      )
+      .catch(console.error);
+  };
+
   return (
     <div className="app">
       <Header
@@ -25,6 +54,19 @@ function App() {
       />
       <main className="main">{/* Add your main content here */}</main>
       <Footer></Footer>
+      {/*Modals*/}
+      <LoginModal
+        isOpen={activeModal === "login"}
+        closeActiveModal={closeModal}
+        handleSignUpModal={() => openModal("signup")}
+        onLogIn={handleLogin}
+      />
+      <SignUpModal
+        isOpen={activeModal === "signup"}
+        closeActiveModal={closeModal}
+        onRegister={handleSignUp}
+        openLoginModal={() => openModal("login")}
+      />
     </div>
   );
 }

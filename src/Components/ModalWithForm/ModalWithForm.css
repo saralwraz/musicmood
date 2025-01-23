@@ -4,12 +4,13 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #23001e;
+  background-color: rgb(35, 0, 30, 0.45);
   display: flex;
   justify-content: center;
   align-items: center;
   visibility: hidden;
   z-index: 3;
+  font-family: "Roboto", Arial, sans-serif;
 }
 
 .modal_opened {
@@ -17,14 +18,18 @@
 }
 
 .modal__heading {
+  font-family: "Roboto Black", Arial, sans-serif;
   margin: 0 0 24px;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 24px;
+  line-height: 26px;
+  width: 100%;
+  max-width: 380px;
 }
 
 .modal__form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: #fff;
   position: relative;
   padding: 28px 28px 36px;
@@ -38,17 +43,25 @@
   position: absolute;
   top: 20px;
   right: 28px;
-  background-image: url(../../assets/close.png);
+  background-image: url("../../assets/close.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   width: 16px;
   height: 16px;
   border: none;
   background-color: transparent;
   cursor: pointer;
+  padding: 0;
 }
 
 .modal__label {
   display: flex;
   flex-direction: column;
+  color: #20a39e;
+  font-size: 14px;
+  width: 100%;
+  max-width: 380px;
 }
 
 .modal__label_type_radio {
@@ -56,29 +69,35 @@
 }
 
 .modal__input {
+  width: 100%;
   display: block;
   margin: 3px 0 24px;
   padding-top: 8px;
   border: none;
-  border-bottom: 1px solid #000;
+  color: #23001e;
+  border-bottom: 1px solid #23001e;
+  box-sizing: border-box;
 }
 
-.modal__radio_buttons {
-  border: none;
-  padding: 0;
+.modal__buttons-container {
+  width: 100%;
+  max-width: 380px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 8px;
 }
 
 .modal__submit {
   margin: 32px 0 0;
-  width: 124px;
-  height: 36px;
+  width: 100%;
+  height: 64px;
   color: #fff;
   border: none;
-  background-color: #000;
-  border-radius: 4px;
+  background-color: #ffba49;
+  color: #23001e;
+  border-radius: 50px;
+  margin-bottom: 0;
 }
 
 .modal__submit:hover {
