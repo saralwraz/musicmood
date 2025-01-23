@@ -1,5 +1,8 @@
 import { useState } from "react";
-import Header from "/src/components/Header/Header.jsx";
+
+//Components
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -21,6 +24,7 @@ function App() {
         handleSignUpModal={() => openModal("signup")}
       />
       <main className="main">{/* Add your main content here */}</main>
+      <Footer></Footer>
     </div>
   );
 }

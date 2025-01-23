@@ -1,8 +1,11 @@
 .footer {
+  display: flex;
   font-family: "Roboto";
-  font-size: 22px;
+  font-size: 16px;
   font-weight: 400;
   justify-content: space-between;
+  padding: 10px 60px;
+  align-items: center;
 }
 
 .footer__text {
@@ -10,11 +13,14 @@
 }
 
 .footer__links {
+  display: flex;
   height: 24px;
   width: 24px;
+  margin-right: 55px;
 }
 
 .footer__facebook {
+  padding-right: 24px;
   height: 24px;
   width: 24px;
 }
