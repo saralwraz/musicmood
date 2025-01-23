@@ -47,14 +47,13 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   border: none;
   background-color: transparent;
   cursor: pointer;
   padding: 0;
 }
-
 .modal__label {
   display: flex;
   flex-direction: column;

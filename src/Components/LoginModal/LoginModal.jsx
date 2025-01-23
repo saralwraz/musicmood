@@ -39,7 +39,7 @@ const LoginModal = ({
       title="Log In"
       buttonText="Log In"
       isOpen={isOpen}
-      onClose={closeActiveModal}
+      closeActiveModal={closeActiveModal}
       onSubmit={handleSubmit}
       buttonClass={`modal__submit ${
         isButtonActive ? "modal__submit_complete" : ""
@@ -47,11 +47,6 @@ const LoginModal = ({
       error={error}
       name="login"
     >
-      <button
-        className="modal__close"
-        type="button"
-        onClick={closeActiveModal}
-      />
       <label htmlFor="login-email" className="modal__label">
         Email*
         <input
