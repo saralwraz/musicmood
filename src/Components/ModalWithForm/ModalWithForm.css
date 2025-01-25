@@ -41,19 +41,24 @@
 
 .modal__close {
   position: absolute;
-  top: 20px;
-  right: 28px;
-  background-image: url("../../assets/closeX.png");
+  top: -40px;
+  right: -40px;
+  background-image: url("../../assets/modalX.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   border: none;
   background-color: transparent;
   cursor: pointer;
   padding: 0;
 }
+
+.modal__close:hover {
+  opacity: 0.6;
+}
+
 .modal__label {
   display: flex;
   flex-direction: column;
@@ -89,7 +94,7 @@
 
 .modal__submit {
   margin: 32px 0 0;
-  width: 100%;
+  width: 415px;
   height: 64px;
   color: #fff;
   border: none;

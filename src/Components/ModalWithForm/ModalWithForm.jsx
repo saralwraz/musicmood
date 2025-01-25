@@ -9,6 +9,22 @@ function ModalWithForm({
   closeActiveModal,
   name = "modal",
 }) {
+  React.useEffect(() => {
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("keydown", handleEscClose);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [isOpen, closeActiveModal]);
+
   const handleModalClick = (e) => {
     if (e.target === e.currentTarget) {
       closeActiveModal();
