@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./main.css";
-import { moodSuggestions } from "../Moods/Moods";
+import Moods from "../Moods/Moods";
 
 function Main() {
   const [keywords, setKeywords] = useState([]);
@@ -11,9 +11,9 @@ function Main() {
 
   useEffect(() => {
     if (inputValue.trim()) {
-      const filteredSuggestions = moodSuggestions
-        .filter((mood) => mood.toLowerCase().includes(inputValue.toLowerCase()))
-        .slice(0, 3);
+      const filteredSuggestions = Moods.filter((mood) =>
+        mood.toLowerCase().includes(inputValue.toLowerCase())
+      ).slice(0, 5);
       setSuggestions(filteredSuggestions);
       setShowSuggestions(true);
     } else {
@@ -65,7 +65,7 @@ function Main() {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyUp={handleKeyPress}
-                placeholder={`Add up to ${MAX_KEYWORDS} moods`}
+                placeholder={`add up to ${MAX_KEYWORDS} moods`}
               />
               {showSuggestions && suggestions.length > 0 && (
                 <div className="main__suggestions">
