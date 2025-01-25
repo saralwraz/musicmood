@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./main.css";
 import Moods from "../Moods/Moods";
+import SearchResults from "../SearchResults/SearchResults";
 import { searchSpotifyTracks } from "../../utils/api";
 
 function Main() {
@@ -143,24 +144,7 @@ function Main() {
         </div>
       </div>
 
-      {searchResults.length > 0 && (
-        <div className="search-results">
-          {searchResults.map((track) => (
-            <div key={track.id} className="track-card">
-              <img
-                src={track.album.images[0]?.url}
-                alt={track.name}
-                width="64"
-                height="64"
-              />
-              <div className="track-info">
-                <h3>{track.name}</h3>
-                <p>{track.artists.map((artist) => artist.name).join(", ")}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+      {searchResults.length > 0 && <SearchResults tracks={searchResults} />}
     </main>
   );
 }
