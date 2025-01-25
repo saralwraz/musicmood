@@ -10,7 +10,7 @@
   font-family: "Cormorant Garamond", Times, serif;
   color: white;
   font-weight: 500;
-  padding: 0;
+  padding: 250px 0 0;
   margin: 0;
 }
 
@@ -21,6 +21,7 @@
 }
 
 .main__subheading {
+  font-family: "Cormorant Garamond", Times, serif;
   font-size: 50px;
   color: white;
   font-weight: 500;
@@ -29,6 +30,7 @@
 }
 
 .main__text {
+  font-family: "Cormorant Garamond", Times, serif;
   color: white;
   font-size: 35px;
   margin: 0;
@@ -37,8 +39,15 @@
 
 .main__input-container {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   margin: 20px 0;
+  position: relative;
+}
+
+.main__input-row {
+  display: flex;
+  align-items: center;
 }
 
 .main__input {
@@ -51,21 +60,40 @@
   outline: none;
 }
 
-.main__keywords {
+.main__keywords-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 10px;
-  background-image: url("../../assets/closeX.png");
+  width: 100%;
+}
+
+.main__keyword-delete {
+  background-color: transparent;
+  border: none;
+  width: 20px;
+  height: 20px;
+  background-image: url("../../assets/x.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
+  background-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+  margin-left: 5px;
+  vertical-align: middle;
 }
 
 .main__keyword {
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 16px;
   background-color: #23001e;
   color: white;
   padding: 5px 15px;
-  border-radius: 20px;
+  border-radius: 10px;
   font-size: 24px;
 }

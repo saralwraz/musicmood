@@ -12,6 +12,10 @@ function Main() {
     }
   };
 
+  const handleDeleteKeyword = (indexToDelete) => {
+    setKeywords(keywords.filter((_, index) => index !== indexToDelete));
+  };
+
   return (
     <main className="main">
       <h1 className="main__headline">
@@ -21,22 +25,28 @@ function Main() {
         discover the perfect song for the moment
       </h2>
       <div className="main__input-container">
-        <p className="main__text">I'm feeling</p>
-        <input
-          type="text"
-          className="main__input"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          onKeyUp={handleKeyPress}
-          placeholder="Enter keywords..."
-        />
-      </div>
-      <div className="main__keywords">
-        {keywords.map((keyword, index) => (
-          <span key={index} className="main__keyword">
-            {keyword}
-          </span>
-        ))}
+        <div className="main__input-row">
+          <p className="main__text">I'm feeling</p>
+          <input
+            type="text"
+            className="main__input"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyUp={handleKeyPress}
+          />
+        </div>
+        <div className="main__keywords-container">
+          {keywords.map((keyword, index) => (
+            <span key={index} className="main__keyword">
+              {keyword}
+              <button
+                className="main__keyword-delete"
+                onClick={() => handleDeleteKeyword(index)}
+                aria-label="Delete keyword"
+              />
+            </span>
+          ))}
+        </div>
       </div>
     </main>
   );
