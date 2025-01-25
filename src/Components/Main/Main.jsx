@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./main.css";
 import Moods from "../Moods/Moods";
+import { searchSpotifyTracks } from "../../utils/api";
 
 function Main() {
   const [keywords, setKeywords] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const MAX_KEYWORDS = 3;
   const MAX_CHARS = 15;
 
@@ -63,6 +66,22 @@ function Main() {
 
   const showInput = keywords.length < MAX_KEYWORDS;
 
+  const handleSubmit = async () => {
+    if (keywords.length === 0) return;
+
+    setIsLoading(true);
+    try {
+      // Join keywords with spaces to create search query
+      const searchQuery = keywords.join(" ");
+      const tracks = await searchSpotifyTracks(searchQuery);
+      setSearchResults(tracks);
+    } catch (error) {
+      console.error("Search failed:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <main className="main">
       <h1 className="main__headline">
@@ -84,8 +103,13 @@ function Main() {
                 onKeyUp={handleKeyPress}
                 maxLength={MAX_CHARS}
               />
-              <button type="submit" className="main__submit">
-                find your tune
+              <button
+                type="button"
+                className="main__submit"
+                onClick={handleSubmit}
+                disabled={isLoading || keywords.length === 0}
+              >
+                {isLoading ? "searching..." : "find your tune"}
               </button>
               {showSuggestions && suggestions.length > 0 && (
                 <div className="main__suggestions">
@@ -118,6 +142,25 @@ function Main() {
           ))}
         </div>
       </div>
+
+      {searchResults.length > 0 && (
+        <div className="search-results">
+          {searchResults.map((track) => (
+            <div key={track.id} className="track-card">
+              <img
+                src={track.album.images[0]?.url}
+                alt={track.name}
+                width="64"
+                height="64"
+              />
+              <div className="track-info">
+                <h3>{track.name}</h3>
+                <p>{track.artists.map((artist) => artist.name).join(", ")}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </main>
   );
 }

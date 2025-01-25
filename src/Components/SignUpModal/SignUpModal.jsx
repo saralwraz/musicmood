@@ -6,7 +6,7 @@ const SignUpModal = ({
   closeActiveModal,
   openLoginModal,
   isOpen,
-  onsignup,
+  onSignUp,
   buttonClass = "modal__submit",
 }) => {
   const [name, setName] = useState("");
@@ -35,7 +35,14 @@ const SignUpModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onsignup({ name, avatar, email, password });
+    if (!email || !password || !name) {
+      return;
+    }
+    onSignUp({
+      email,
+      password,
+      name,
+    });
   };
 
   return (
