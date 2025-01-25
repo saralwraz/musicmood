@@ -25,8 +25,13 @@ function Main() {
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && inputValue.trim()) {
-      if (keywords.length < MAX_KEYWORDS && inputValue.length <= MAX_CHARS) {
-        setKeywords([...keywords, inputValue.trim()]);
+      const newKeyword = inputValue.trim();
+      if (
+        keywords.length < MAX_KEYWORDS &&
+        newKeyword.length <= MAX_CHARS &&
+        !keywords.includes(newKeyword)
+      ) {
+        setKeywords([...keywords, newKeyword]);
         setInputValue("");
         setShowSuggestions(false);
       }
@@ -34,7 +39,11 @@ function Main() {
   };
 
   const handleSuggestionClick = (suggestion) => {
-    if (keywords.length < MAX_KEYWORDS && suggestion.length <= MAX_CHARS) {
+    if (
+      keywords.length < MAX_KEYWORDS &&
+      suggestion.length <= MAX_CHARS &&
+      !keywords.includes(suggestion)
+    ) {
       setKeywords([...keywords, suggestion]);
       setInputValue("");
       setShowSuggestions(false);
