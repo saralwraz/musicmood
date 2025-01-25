@@ -8,6 +8,7 @@ function Main() {
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const MAX_KEYWORDS = 3;
+  const MAX_CHARS = 15;
 
   useEffect(() => {
     if (inputValue.trim()) {
@@ -24,7 +25,7 @@ function Main() {
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && inputValue.trim()) {
-      if (keywords.length < MAX_KEYWORDS) {
+      if (keywords.length < MAX_KEYWORDS && inputValue.length <= MAX_CHARS) {
         setKeywords([...keywords, inputValue.trim()]);
         setInputValue("");
         setShowSuggestions(false);
@@ -33,7 +34,7 @@ function Main() {
   };
 
   const handleSuggestionClick = (suggestion) => {
-    if (keywords.length < MAX_KEYWORDS) {
+    if (keywords.length < MAX_KEYWORDS && suggestion.length <= MAX_CHARS) {
       setKeywords([...keywords, suggestion]);
       setInputValue("");
       setShowSuggestions(false);
@@ -42,6 +43,13 @@ function Main() {
 
   const handleDeleteKeyword = (indexToDelete) => {
     setKeywords(keywords.filter((_, index) => index !== indexToDelete));
+  };
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    if (value.length <= MAX_CHARS) {
+      setInputValue(value);
+    }
   };
 
   const showInput = keywords.length < MAX_KEYWORDS;
@@ -63,10 +71,13 @@ function Main() {
                 type="text"
                 className="main__input"
                 value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
+                onChange={handleInputChange}
                 onKeyUp={handleKeyPress}
-                placeholder={`add up to ${MAX_KEYWORDS} moods`}
+                maxLength={MAX_CHARS}
               />
+              <button type="submit" className="main__submit">
+                find your tune
+              </button>
               {showSuggestions && suggestions.length > 0 && (
                 <div className="main__suggestions">
                   {suggestions.map((suggestion, index) => (
