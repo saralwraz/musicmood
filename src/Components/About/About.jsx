@@ -35,7 +35,14 @@ function About() {
               Sara Raz is a digital marketer, graphic designer, and full stack
               developer originally from Philadelphia, now living in Ramat Gan,
               IL. When she's not running after toddler, she enjoys the beach,
-              baroque art, and all things Halloween. See more of her work here.
+              baroque art, and all things Halloween. See more of her work{" "}
+              <a
+                href="https://elegant-peach-245.notion.site/Sara-Raz-Portfolio-146e2356136f80e798ebd7b3b05097ff?pvs=74"
+                className="about__link"
+                alt="link to portfolio"
+              >
+                here.
+              </a>
             </p>
           </div>
         </div>

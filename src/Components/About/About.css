@@ -68,6 +68,15 @@
   width: 100%;
 }
 
+.about__link {
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.about__link:hover {
+  color: #380030;
+}
+
 .about__text-container {
   display: flex;
   flex-direction: column;
