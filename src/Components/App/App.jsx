@@ -3,6 +3,7 @@ import { useState } from "react";
 //Components
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import Main from "../Main/Main";
 
 //Modals
 import LoginModal from "../LoginModal/LoginModal";
@@ -52,7 +53,9 @@ function App() {
         handleLoginModal={() => openModal("login")}
         handleSignUpModal={() => openModal("signup")}
       />
-      <main className="main">{/* Add your main content here */}</main>
+      <main className="main">
+        <Main></Main>
+      </main>
       <Footer></Footer>
       {/*Modals*/}
       <LoginModal

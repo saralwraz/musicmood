@@ -1,0 +1,71 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.main__headline {
+  font-size: 100px;
+  font-family: "Cormorant Garamond", Times, serif;
+  color: white;
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
+}
+
+.main__headline_mood {
+  color: #23001e;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.main__subheading {
+  font-size: 50px;
+  color: white;
+  font-weight: 500;
+  padding: 12px 0;
+  margin: 0;
+}
+
+.main__text {
+  color: white;
+  font-size: 35px;
+  margin: 0;
+  margin-right: 10px;
+}
+
+.main__input-container {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.main__input {
+  font-size: 35px;
+  padding: 5px 10px;
+  border: none;
+  border-bottom: 2px solid #23001e;
+  background: transparent;
+  color: white;
+  outline: none;
+}
+
+.main__keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+  background-image: url("../../assets/closeX.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.main__keyword {
+  background-color: #23001e;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 24px;
+}
