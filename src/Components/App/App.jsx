@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
 //Components
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
+import About from "../About/About";
 
 //Modals
 import LoginModal from "../LoginModal/LoginModal";
@@ -53,10 +55,13 @@ function App() {
         handleLoginModal={() => openModal("login")}
         handleSignUpModal={() => openModal("signup")}
       />
-      <main className="main">
-        <Main></Main>
+      <main className="app__content">
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
       </main>
-      <Footer></Footer>
+      <Footer />
       {/*Modals*/}
       <LoginModal
         isOpen={activeModal === "login"}

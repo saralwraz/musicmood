@@ -7,12 +7,18 @@
   line-height: 27px;
   font-family: "Cormorant Garamond", times, serif;
   min-height: 80px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: transparent;
 }
 
 .header__logo {
   height: 25px;
   object-fit: contain;
-  margin-right: 230px;
+  margin-right: 100px;
 }
 
 .header__right {
@@ -20,6 +26,7 @@
   align-items: center;
   gap: 30px;
   margin-left: auto;
+  padding-right: 60px;
 }
 
 .header__nav {
