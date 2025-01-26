@@ -100,6 +100,11 @@
   margin-bottom: 0;
 }
 
+.modal__submit_complete {
+  color: white;
+  background-color: #23001e;
+}
+
 .modal__submit:hover {
   opacity: 0.6;
 }

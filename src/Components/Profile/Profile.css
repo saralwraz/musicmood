@@ -1,0 +1,39 @@
+.profile {
+  display: flex;
+  gap: 30px;
+  padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.profile__content {
+  flex: 1;
+  font-family: "Cormorant Garamond", Times, serif;
+}
+
+.profile__signout-button {
+  border-style: none;
+  background-color: #ffba49;
+  color: #23001e;
+}
+
+.profile__liked-songs {
+  color: white;
+}
+
+.profile__liked-songs h2 {
+  font-family: "Cormorant Garamond", Times, serif;
+  font-size: 32px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .profile {
+    flex-direction: column;
+  }
+
+  .profile__content {
+    width: 100%;
+  }
+}

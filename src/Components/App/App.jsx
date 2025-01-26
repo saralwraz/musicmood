@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { logIn, getUserProfile, signup } from "../../utils/api";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 //Components
 import Navigation from "../Navigation/Navigation.jsx";
 import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
 import About from "../About/About";
+import Profile from "../Profile/Profile.jsx";
 
 //Modals
 import LoginModal from "../LoginModal/LoginModal";
@@ -51,34 +54,64 @@ function App() {
       .catch(console.error);
   };
 
+  const handleSignout = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    setCurrentUser(null);
+    navigate("/");
+  };
+
+  const handleEditProfile = (profileData) => {
+    const token = localStorage.getItem("jwt");
+    editUserProfile(profileData, token)
+      .then((updatedUser) => {
+        setCurrentUser(updatedUser);
+        closeModal();
+      })
+      .catch((err) => console.error("Edit profile error:", err));
+  };
+
   return (
-    <div className="app">
-      <Navigation
-        isLoggedIn={isLoggedIn}
-        handleLoginModal={() => openModal("login")}
-        handleSignUpModal={() => openModal("signup")}
-      />
-      <main className="app__content">
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
-      </main>
-      <Footer />
-      {/*Modals*/}
-      <LoginModal
-        isOpen={activeModal === "login"}
-        closeActiveModal={closeModal}
-        handleSignUpModal={() => openModal("signup")}
-        onLogIn={handleLogin}
-      />
-      <SignUpModal
-        isOpen={activeModal === "signup"}
-        closeActiveModal={closeModal}
-        onRegister={handleSignUp}
-        openLoginModal={() => openModal("login")}
-      />
-    </div>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="app">
+        <Navigation
+          isLoggedIn={isLoggedIn}
+          handleLoginModal={() => openModal("login")}
+          handleSignUpModal={() => openModal("signup")}
+        />
+        <main className="app__content">
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/about" element={<About />} />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <Profile
+                    currentUser={currentUser}
+                    handleSignout={handleSignout}
+                  />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </main>
+        <Footer />
+        {/*Modals*/}
+        <LoginModal
+          isOpen={activeModal === "login"}
+          closeActiveModal={closeModal}
+          handleSignUpModal={() => openModal("signup")}
+          onLogIn={handleLogin}
+        />
+        <SignUpModal
+          isOpen={activeModal === "signup"}
+          closeActiveModal={closeModal}
+          onRegister={handleSignUp}
+          openLoginModal={() => openModal("login")}
+        />
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 

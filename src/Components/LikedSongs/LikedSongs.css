@@ -1,0 +1,129 @@
+.liked-songs {
+  margin-top: 40px;
+  padding: 20px;
+}
+
+.liked-songs__title {
+  font-family: "Cormorant Garamond", Times, serif;
+  font-size: 100px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.liked-songs__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.liked-songs__card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.liked-songs__card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.liked-songs__image-container {
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+}
+
+.liked-songs__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.liked-songs__info {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.liked-songs__text-content {
+  flex: 1;
+  margin-right: 10px;
+  min-width: 0;
+}
+
+.liked-songs__track-name {
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 100;
+  margin: 0 0 5px 0;
+  color: #23001e;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.liked-songs__artist {
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: 900;
+  font-size: 14px;
+  color: #23001e;
+  margin: 0 0 5px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.liked-songs__album {
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 100;
+  color: #20a39e;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.liked-songs__unlike-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.liked-songs__unlike-button:hover {
+  transform: scale(1.1);
+}
+
+.liked-songs__unlike-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .liked-songs__grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .liked-songs__grid {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+}
