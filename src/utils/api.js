@@ -165,3 +165,36 @@ export const getUserLikedSongs = async () => {
     throw error;
   }
 };
+
+// Mock user for getUserProfile
+const MOCK_USER = {
+  _id: "679680494e6a3af61b0783f4",
+  name: "Demo User",
+  email: "demo@example.com",
+  avatar: "https://placekitten.com/100/100",
+};
+
+export const logIn = ({ email, password }) => {
+  return new Promise((resolve) => {
+    resolve({ token: "fake-auth-token-123" });
+  });
+};
+
+export const signup = (userData) => {
+  return new Promise((resolve) => {
+    resolve({
+      message: "Success",
+      user: {
+        _id: "65f73a1b2c3d4e5f6g7h8i9j",
+        name: userData.name,
+        email: userData.email,
+      },
+    });
+  });
+};
+
+export const getUserProfile = (token) => {
+  return new Promise((resolve) => {
+    resolve(MOCK_USER);
+  });
+};

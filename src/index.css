@@ -2,9 +2,6 @@
 @import url(./vendor/fonts.css);
 
 :root {
-  background: linear-gradient(rgba(239, 91, 91, 0.8), rgba(239, 91, 91, 0.8)),
-    url("../src/assets/musicmood-background.jpg") no-repeat fixed;
-  background-size: contain;
   display: flex;
   flex-direction: column;
   justify-items: center;

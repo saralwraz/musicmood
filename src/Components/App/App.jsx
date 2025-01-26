@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { logIn, getUserProfile, signup } from "../../utils/api";
 
 //Components
 import Navigation from "../Navigation/Navigation.jsx";
@@ -15,6 +16,8 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
+  const [currentUser, setCurrentUser] = useState({});
+  const navigate = useNavigate();
 
   // Modal Handlers
   const openModal = (modal) => setActiveModal(modal);

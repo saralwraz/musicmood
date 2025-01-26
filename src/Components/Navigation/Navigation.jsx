@@ -8,7 +8,7 @@ function Navigation({ handleSignUpModal, handleLoginModal, isLoggedIn }) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
-    <Navigation className="navigation">
+    <div className="navigation">
       <Link to="/">
         <img className="navigation__logo" src={logo} alt="navigation logo" />
       </Link>
@@ -56,7 +56,7 @@ function Navigation({ handleSignUpModal, handleLoginModal, isLoggedIn }) {
           </div>
         )}
       </div>
-    </Navigation>
+    </div>
   );
 }
 
