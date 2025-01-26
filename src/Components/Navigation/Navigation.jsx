@@ -22,10 +22,14 @@ function Navigation({ handleSignUpModal, handleLoginModal, isLoggedIn }) {
           </Link>
         </nav>
 
-        {isLoggedIn ? (
+        {isLoggedIn && currentUser ? (
           <div className="navigation__user_info">
-            <p className="navigation__username">{currentUser.name}</p>
-            {currentUser.avatar ? (
+            <Link to="/profile" className="navigation__username-link">
+              <p className="navigation__username">
+                {currentUser?.name || "User"}
+              </p>
+            </Link>
+            {currentUser?.avatar ? (
               <img
                 src={currentUser.avatar}
                 alt={currentUser.name || "User Avatar"}
@@ -33,7 +37,7 @@ function Navigation({ handleSignUpModal, handleLoginModal, isLoggedIn }) {
               />
             ) : (
               <div className="navigation__avatar-placeholder">
-                {currentUser.name.charAt(0).toUpperCase()}
+                {currentUser?.name?.charAt(0).toUpperCase() || "U"}
               </div>
             )}
           </div>

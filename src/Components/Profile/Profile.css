@@ -1,9 +1,10 @@
 .profile {
   display: flex;
   gap: 30px;
-  padding: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 30px 60px;
+  margin: 100px auto 0;
+  min-height: calc(100vh - 80px);
+  max-width: 100%;
 }
 
 .profile__content {
@@ -31,9 +32,11 @@
 @media (max-width: 768px) {
   .profile {
     flex-direction: column;
+    padding: 30px;
   }
 
   .profile__content {
     width: 100%;
+    margin-left: 0;
   }
 }

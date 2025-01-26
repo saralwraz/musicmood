@@ -171,7 +171,8 @@ const MOCK_USER = {
   _id: "679680494e6a3af61b0783f4",
   name: "Demo User",
   email: "demo@example.com",
-  avatar: "https://placekitten.com/100/100",
+  avatar:
+    "https://static.wikia.nocookie.net/villains/images/7/76/DooropenOrlok.jpg/revision/latest/scale-to-width-down/638?cb=20220208174014",
 };
 
 export const logIn = ({ email, password }) => {

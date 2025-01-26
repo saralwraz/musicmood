@@ -85,3 +85,13 @@
   color: #23001e;
   font-weight: bold;
 }
+
+.navigation__username-link {
+  text-decoration: none;
+  color: white;
+  transition: opacity 0.2s;
+}
+
+.navigation__username-link:hover {
+  opacity: 0.6;
+}

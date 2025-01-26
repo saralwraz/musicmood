@@ -75,7 +75,8 @@
 }
 
 .main__submit:hover {
-  background-color: #ffc66c;
+  background-color: #380030;
+  color: #ffba49;
 }
 
 .main__keywords-container {

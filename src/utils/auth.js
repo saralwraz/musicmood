@@ -43,7 +43,8 @@ export const checkToken = (token) => {
         _id: "65f73a1b2c3d4e5f6g7h8i9j",
         name: "Demo User",
         email: "demo@example.com",
-        avatar: "https://placekitten.com/100/100",
+        avatar:
+          "https://static.wikia.nocookie.net/villains/images/7/76/DooropenOrlok.jpg/revision/latest/scale-to-width-down/638?cb=20220208174014",
       },
     });
   });

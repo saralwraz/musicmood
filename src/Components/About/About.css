@@ -54,6 +54,11 @@
   transition: background-color 0.2s;
 }
 
+.about__search:hover {
+  background-color: #380030;
+  color: #ffba49;
+}
+
 .about__wrapper {
   display: flex;
   flex-direction: column;
