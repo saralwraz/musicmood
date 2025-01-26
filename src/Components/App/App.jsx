@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 //Components
-import Header from "../Header/Header";
+import Navigation from "../Navigation/Navigation.jsx";
 import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
 import About from "../About/About";
@@ -50,7 +50,7 @@ function App() {
 
   return (
     <div className="app">
-      <Header
+      <Navigation
         isLoggedIn={isLoggedIn}
         handleLoginModal={() => openModal("login")}
         handleSignUpModal={() => openModal("signup")}

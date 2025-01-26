@@ -1,4 +1,4 @@
-.header {
+.navigation {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,13 +15,13 @@
   background: transparent;
 }
 
-.header__logo {
+.navigation__logo {
   height: 25px;
   object-fit: contain;
   margin-right: 100px;
 }
 
-.header__right {
+.navigation__right {
   display: flex;
   align-items: center;
   gap: 30px;
@@ -29,24 +29,24 @@
   padding-right: 60px;
 }
 
-.header__nav {
+.navigation__nav {
   display: flex;
   gap: 25px;
   align-items: right;
 }
 
-.header__link {
+.navigation__link {
   text-decoration: none;
   color: white;
 }
 
-.header__auth-buttons {
+.navigation__auth-buttons {
   display: flex;
   gap: 10px;
 }
 
-.header__signup,
-.header__login {
+.navigation__signup,
+.navigation__login {
   padding: 8px 20px;
   border: none;
   font-style: italic;
@@ -57,27 +57,27 @@
   transition: opacity 0.2s;
 }
 
-.header__signup:hover,
-.header__login:hover {
+.navigation__signup:hover,
+.navigation__login:hover {
   opacity: 0.6;
 }
 
-.header__user_info {
+.navigation__user_info {
   display: flex;
   align-items: center;
   gap: 10px;
   color: white;
 }
 
-.header__avatar,
-.header__avatar-placeholder {
+.navigation__avatar,
+.navigation__avatar-placeholder {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.header__avatar-placeholder {
+.navigation__avatar-placeholder {
   background-color: #ef5b5b;
   display: flex;
   align-items: center;
