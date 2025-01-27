@@ -7,10 +7,6 @@
   line-height: 27px;
   font-family: "Cormorant Garamond", Times, serif;
   min-height: 80px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   z-index: 100;
   background: transparent;
 }

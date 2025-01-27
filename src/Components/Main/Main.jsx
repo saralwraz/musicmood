@@ -132,13 +132,6 @@ function Main() {
                   ))}
                 </div>
               )}
-              <p
-                className={`main__input-disclaimer ${
-                  inputValue ? "visible" : ""
-                }`}
-              >
-                press enter to add mood
-              </p>
             </div>
           ) : (
             <p className="main__limit-message">maximum moods reached</p>
@@ -166,11 +159,13 @@ function Main() {
         </div>
       </div>
 
-      {isLoading ? (
-        <Preloader />
-      ) : (
-        searchResults.length > 0 && <SearchResults tracks={searchResults} />
-      )}
+      <div className="main__results-area">
+        {isLoading ? (
+          <Preloader />
+        ) : (
+          searchResults.length > 0 && <SearchResults tracks={searchResults} />
+        )}
+      </div>
     </main>
   );
 }
