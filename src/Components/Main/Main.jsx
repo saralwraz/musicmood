@@ -3,6 +3,7 @@ import "./main.css";
 import Moods from "../Moods/Moods";
 import SearchResults from "../SearchResults/SearchResults";
 import { searchSpotifyTracks } from "../../utils/api";
+import Preloader from "../Preloader/Preloader";
 
 function Main() {
   const [keywords, setKeywords] = useState([]);
@@ -67,6 +68,20 @@ function Main() {
 
   const showInput = keywords.length < MAX_KEYWORDS;
 
+  const handleMusicSearch = (searchTerm) => {
+    setIsLoading(true);
+    fetchMusicData(searchTerm)
+      .then((data) => {
+        setSearchResults(data);
+      })
+      .catch((error) => {
+        console.error("Search error:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
   const handleSubmit = async () => {
     if (keywords.length === 0) return;
 
@@ -104,14 +119,6 @@ function Main() {
                 onKeyUp={handleKeyPress}
                 maxLength={MAX_CHARS}
               />
-              <button
-                type="button"
-                className="main__submit"
-                onClick={handleSubmit}
-                disabled={isLoading || keywords.length === 0}
-              >
-                {isLoading ? "searching..." : "find your tune"}
-              </button>
               {showSuggestions && suggestions.length > 0 && (
                 <div className="main__suggestions">
                   {suggestions.map((suggestion, index) => (
@@ -125,10 +132,25 @@ function Main() {
                   ))}
                 </div>
               )}
+              <p
+                className={`main__input-disclaimer ${
+                  inputValue ? "visible" : ""
+                }`}
+              >
+                press enter to add mood
+              </p>
             </div>
           ) : (
             <p className="main__limit-message">maximum moods reached</p>
           )}
+          <button
+            type="button"
+            className="main__submit"
+            onClick={handleSubmit}
+            disabled={isLoading || keywords.length === 0}
+          >
+            {isLoading ? "searching..." : "find your tune"}
+          </button>
         </div>
         <div className="main__keywords-container">
           {keywords.map((keyword, index) => (
@@ -144,7 +166,11 @@ function Main() {
         </div>
       </div>
 
-      {searchResults.length > 0 && <SearchResults tracks={searchResults} />}
+      {isLoading ? (
+        <Preloader />
+      ) : (
+        searchResults.length > 0 && <SearchResults tracks={searchResults} />
+      )}
     </main>
   );
 }
