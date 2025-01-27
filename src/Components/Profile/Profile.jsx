@@ -2,10 +2,13 @@ import "./Profile.css";
 import Sidebar from "../Sidebar/Sidebar";
 import LikedSongs from "../LikedSongs/LikedSongs";
 
-function Profile({ currentUser, handleSignout }) {
+function Profile({ currentUser, handleSignout, openModal }) {
+  const handleEditProfile = () => {
+    openModal("edit");
+  };
   return (
     <div className="profile">
-      <Sidebar handleSignout={handleSignout} />
+      <Sidebar handleSignout={handleSignout} openModal={openModal} />
       <div className="profile__content">
         <section className="profile__liked-songs">
           <h2>your liked songs</h2>

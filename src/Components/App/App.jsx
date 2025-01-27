@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { logIn, getUserProfile, signup } from "../../utils/api";
+import {
+  logIn,
+  getUserProfile,
+  signup,
+  editUserProfile,
+} from "../../utils/api";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
@@ -14,6 +19,7 @@ import Profile from "../Profile/Profile.jsx";
 //Modals
 import LoginModal from "../LoginModal/LoginModal";
 import SignUpModal from "../SignUpModal/SignUpModal.jsx";
+import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -90,6 +96,7 @@ function App() {
                   <Profile
                     currentUser={currentUser}
                     handleSignout={handleSignout}
+                    openModal={openModal}
                   />
                 </ProtectedRoute>
               }
@@ -109,6 +116,11 @@ function App() {
           closeActiveModal={closeModal}
           onRegister={handleSignUp}
           openLoginModal={() => openModal("login")}
+        />
+        <EditProfileModal
+          isOpen={activeModal === "edit"}
+          closeActiveModal={closeModal}
+          onEditProfileSubmit={handleEditProfile}
         />
       </div>
     </CurrentUserContext.Provider>

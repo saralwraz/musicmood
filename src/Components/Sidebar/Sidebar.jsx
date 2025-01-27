@@ -2,7 +2,7 @@ import { useContext } from "react";
 import "./Sidebar.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function Sidebar({ handleSignout }) {
+function Sidebar({ handleSignout, openModal }) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
@@ -25,7 +25,7 @@ function Sidebar({ handleSignout }) {
         <button
           className="sidebar__button"
           type="button"
-          onClick={() => {}} // Add edit profile handler when ready
+          onClick={() => openModal("edit")}
         >
           Edit Profile
         </button>

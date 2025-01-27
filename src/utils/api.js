@@ -199,3 +199,18 @@ export const getUserProfile = (token) => {
     resolve(MOCK_USER);
   });
 };
+
+//Edit profile
+export const editUserProfile = (profileData, token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name: profileData.name,
+      avatar: profileData.avatar,
+    }),
+  }).then(checkResponse);
+};
