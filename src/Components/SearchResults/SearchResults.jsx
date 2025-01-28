@@ -1,5 +1,7 @@
 import "./SearchResults.css";
 import { useState } from "react";
+import headphonesLiked from "../../assets/headphones_liked.png";
+import headphonesUnliked from "../../assets/headphones_unliked.png";
 
 function SearchResults({ tracks }) {
   const [likedTracks, setLikedTracks] = useState(new Set());
@@ -44,8 +46,8 @@ function SearchResults({ tracks }) {
                 <img
                   src={
                     likedTracks.has(track.id)
-                      ? "/headphones_unliked.png"
-                      : "/headphones_liked.png"
+                      ? headphonesLiked
+                      : headphonesUnliked
                   }
                   alt={likedTracks.has(track.id) ? "Unlike" : "Like"}
                   className="search-results__like-icon"
