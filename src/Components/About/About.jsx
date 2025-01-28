@@ -12,7 +12,7 @@ function About() {
   return (
     <div className="about">
       <p className="about__body_text">
-        At <span className="about__body_logo">music</span>mood, we believe music
+        At music<span className="about__body_logo">mood</span>, we believe music
         should match your every mood. Simply type how you're feeling—happy, sad,
         or anywhere in between—or explore by genre to discover songs that
         resonate with you. Save your favorites to revisit later. Whether you're
