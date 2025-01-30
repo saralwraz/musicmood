@@ -7,12 +7,14 @@
 }
 
 .main__headline {
-  font-size: 100px;
+  font-size: 2.5rem; /* Base size for smaller screens */
   font-family: "Cormorant Garamond", Times, serif;
   color: white;
   font-weight: 500;
-  padding: 250px 0 0;
-  margin: 0;
+  padding: 100px 0 0;
+  margin: 0 auto;
+  text-align: center;
+  width: 90%;
 }
 
 .main__headline_mood {
@@ -23,17 +25,19 @@
 
 .main__subheading {
   font-family: "Cormorant Garamond", Times, serif;
-  font-size: 50px;
+  font-size: 1.5rem;
   color: white;
   font-weight: 500;
   padding: 12px 0;
-  margin: 0;
+  margin: 0 auto;
+  text-align: center;
+  width: 90%;
 }
 
 .main__text {
   font-family: "Cormorant Garamond", Times, serif;
   color: white;
-  font-size: 35px;
+  font-size: 1.25rem;
   margin: 0;
   margin-right: 10px;
 }
@@ -52,13 +56,14 @@
 }
 
 .main__input {
-  font-size: 35px;
+  font-size: 1.25rem;
   padding: 5px 10px;
   border: none;
   border-bottom: 2px solid #fff;
   background: transparent;
   color: white;
   outline: none;
+  width: 150px;
 }
 
 .main__submit {
@@ -154,4 +159,97 @@
   margin: 0;
   padding: 5px 10px;
   font-style: italic;
+}
+
+@media screen and (min-width: 481px) {
+  .main__headline {
+    font-size: 4rem;
+    padding: 150px 0 0;
+  }
+
+  .main__subheading {
+    font-size: 2rem;
+  }
+
+  .main__text {
+    font-size: 1.75rem;
+  }
+
+  .main__input {
+    font-size: 1.75rem;
+    width: 200px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .main__headline {
+    font-size: 6.25rem;
+    padding: 250px 0 0;
+  }
+
+  .main__subheading {
+    font-size: 3.125rem;
+  }
+
+  .main__text {
+    font-size: 2.188rem;
+  }
+
+  .main__input {
+    font-size: 2.188rem;
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main__input-container {
+    width: 90%;
+    margin: 20px auto;
+  }
+
+  .main__input-row {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-left: 40px;
+  }
+
+  .main__submit {
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .main__keywords-container {
+    position: relative;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .main__headline {
+    margin-top: 50px;
+  }
+
+  .main__keyword {
+    font-size: 18px;
+    padding: 4px 12px;
+  }
+
+  .main__input {
+    width: 400px;
+  }
+
+  .main__suggestion-item {
+    font-size: 18px;
+    padding: 6px 12px;
+  }
+
+  .main__limit-message {
+    font-size: 18px;
+  }
+
+  .main__submit {
+    height: 36px;
+    font-size: 14px;
+  }
 }
