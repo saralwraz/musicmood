@@ -122,3 +122,14 @@
   padding: 0;
   margin-top: 0;
 }
+
+@media (max-width: 480px) {
+  .modal__close {
+    top: -50px;
+    right: -5px;
+  }
+
+  .modal__form {
+    width: 90%;
+  }
+}

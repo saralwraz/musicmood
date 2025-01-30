@@ -1,18 +1,66 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Navigation.css";
 import logo from "../../assets/musicmood.png";
+import mobileMenu from "../../assets/mobile-menu.png";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 
 function Navigation({ handleSignUpModal, handleLoginModal, isLoggedIn }) {
   const currentUser = useContext(CurrentUserContext);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+    return () => document.removeEventListener("keydown", handleEscClose);
+  }, []);
+
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location]);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleOverlayClick = (e) => {
+    if (e.target.classList.contains("navigation__right")) {
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  const handleSignUpClick = () => {
+    setIsMobileMenuOpen(false);
+    handleSignUpModal();
+  };
+
+  const handleLoginClick = () => {
+    setIsMobileMenuOpen(false);
+    handleLoginModal();
+  };
 
   return (
     <div className="navigation">
       <Link to="/">
         <img className="navigation__logo" src={logo} alt="navigation logo" />
       </Link>
-      <div className="navigation__right">
+
+      <button className="navigation__menu-button" onClick={toggleMobileMenu}>
+        <img src={mobileMenu} alt="menu" className="navigation__menu-icon" />
+      </button>
+
+      <div
+        className={`navigation__right ${
+          isMobileMenuOpen ? "navigation__right_active" : ""
+        }`}
+        onClick={handleOverlayClick}
+      >
         <nav className="navigation__nav">
           <Link to="/" className="navigation__link">
             <p className="navigation__home">home</p>
@@ -44,14 +92,14 @@ function Navigation({ handleSignUpModal, handleLoginModal, isLoggedIn }) {
         ) : (
           <div className="navigation__auth-buttons">
             <button
-              onClick={handleSignUpModal}
+              onClick={handleSignUpClick}
               className="navigation__signup"
               type="button"
             >
               sign up
             </button>
             <button
-              onClick={handleLoginModal}
+              onClick={handleLoginClick}
               className="navigation__login"
               type="button"
             >
