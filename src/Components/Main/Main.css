@@ -215,7 +215,9 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
-    margin-left: 40px;
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
   }
 
   .main__submit {
