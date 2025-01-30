@@ -45,6 +45,7 @@ function App() {
         return getUserProfile(data.token);
       })
       .then((user) => {
+        localStorage.setItem("user", JSON.stringify(user));
         setCurrentUser(user);
         setIsLoggedIn(true);
         navigate("/profile");
@@ -70,20 +71,12 @@ function App() {
   };
 
   const handleEditProfile = (profileData) => {
-    const token = localStorage.getItem("jwt");
-    editUserProfile(profileData, token)
+    editUserProfile(profileData)
       .then((updatedUser) => {
         setCurrentUser(updatedUser);
         closeModal();
       })
       .catch((err) => console.error("Edit profile error:", err));
-  };
-
-  const onEditProfileSubmit = (profileData) => {
-    console.log("Mock API Response:", profileData);
-    return new Promise((resolve) => {
-      setTimeout(() => resolve({ success: true }), 1000);
-    });
   };
 
   return (

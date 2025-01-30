@@ -250,16 +250,16 @@ export const getUserProfile = (token) => {
 };
 
 //Edit profile
-export const editUserProfile = (name, avatar) => {
-  return fetch(`${baseUrl}/users/me`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${localStorage.getItem("jwt")}`,
-    },
-    body: JSON.stringify({
-      name,
-      avatar,
-    }),
-  }).then(checkResponse);
+export const editUserProfile = (userData) => {
+  // Update local storage with new user data
+  const currentUser = JSON.parse(localStorage.getItem("user") || "{}");
+  const updatedUser = {
+    ...currentUser,
+    name: userData.name,
+    avatar: userData.avatar,
+  };
+  localStorage.setItem("user", JSON.stringify(updatedUser));
+
+  // For demo/mock purposes, return a promise that resolves with the updated user
+  return Promise.resolve(updatedUser);
 };
