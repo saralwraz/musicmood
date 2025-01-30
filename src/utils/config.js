@@ -11,7 +11,7 @@ if (!clientId || !clientSecret) {
 export const SPOTIFY_CONFIG = {
   CLIENT_ID: clientId,
   CLIENT_SECRET: clientSecret,
-  REDIRECT_URI: "http://localhost:5173/callback",
+  REDIRECT_URI: "http://localhost:3000/callback",
   AUTH_ENDPOINT: "https://accounts.spotify.com/authorize",
   TOKEN_ENDPOINT: "https://accounts.spotify.com/api/token",
   RESPONSE_TYPE: "code",

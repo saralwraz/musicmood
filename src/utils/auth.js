@@ -44,7 +44,7 @@ export const checkToken = (token) => {
         name: "Demo User",
         email: "demo@example.com",
         avatar:
-          "https://static.wikia.nocookie.net/villains/images/7/76/DooropenOrlok.jpg/revision/latest/scale-to-width-down/638?cb=20220208174014",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/1200px-Smiley.svg.png",
       },
     });
   });

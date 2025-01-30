@@ -41,6 +41,7 @@ const EditProfileModal = ({
   function handleSubmit(e) {
     e.preventDefault();
     if (validateForm()) {
+      console.log("Submitting profile:", { name, avatar }); // Debugging
       onEditProfileSubmit({ name, avatar });
     }
   }

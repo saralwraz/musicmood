@@ -1,11 +1,20 @@
 import { SPOTIFY_CONFIG } from "./config";
 
+const baseUrl = "http://localhost:3000";
+
+// Add checkResponse function directly in api.js
+const checkResponse = (res) => {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Error: ${res.status}`);
+};
+
 let accessToken = null;
 let tokenExpirationTime = null;
 
 const getAccessToken = async () => {
   try {
-    // Check if token exists and is still valid
     if (
       accessToken &&
       tokenExpirationTime &&
@@ -13,10 +22,6 @@ const getAccessToken = async () => {
     ) {
       return accessToken;
     }
-
-    // Debug log to check credentials
-    console.log("Client ID available:", !!SPOTIFY_CONFIG.CLIENT_ID);
-    console.log("Client Secret available:", !!SPOTIFY_CONFIG.CLIENT_SECRET);
 
     const authString = btoa(
       `${SPOTIFY_CONFIG.CLIENT_ID}:${SPOTIFY_CONFIG.CLIENT_SECRET}`
@@ -216,7 +221,7 @@ const MOCK_USER = {
   name: "Demo User",
   email: "demo@example.com",
   avatar:
-    "https://static.wikia.nocookie.net/villains/images/7/76/DooropenOrlok.jpg/revision/latest/scale-to-width-down/638?cb=20220208174014",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/1200px-Smiley.svg.png",
 };
 
 export const logIn = ({ email, password }) => {
@@ -245,16 +250,16 @@ export const getUserProfile = (token) => {
 };
 
 //Edit profile
-export const editUserProfile = (profileData, token) => {
+export const editUserProfile = (name, avatar) => {
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
     body: JSON.stringify({
-      name: profileData.name,
-      avatar: profileData.avatar,
+      name,
+      avatar,
     }),
   }).then(checkResponse);
 };

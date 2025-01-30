@@ -79,6 +79,13 @@ function App() {
       .catch((err) => console.error("Edit profile error:", err));
   };
 
+  const onEditProfileSubmit = (profileData) => {
+    console.log("Mock API Response:", profileData);
+    return new Promise((resolve) => {
+      setTimeout(() => resolve({ success: true }), 1000);
+    });
+  };
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <LikedSongsProvider>
