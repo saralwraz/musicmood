@@ -8,6 +8,7 @@ import {
 } from "../../utils/api";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { LikedSongsProvider } from "../../contexts/LikedSongsContext";
 
 //Components
 import Navigation from "../Navigation/Navigation.jsx";
@@ -62,6 +63,7 @@ function App() {
 
   const handleSignout = () => {
     localStorage.removeItem("jwt");
+    localStorage.removeItem("likedSongs");
     setIsLoggedIn(false);
     setCurrentUser(null);
     navigate("/");
@@ -79,50 +81,52 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className="app">
-        <Navigation
-          isLoggedIn={isLoggedIn}
-          handleLoginModal={() => openModal("login")}
-          handleSignUpModal={() => openModal("signup")}
-        />
-        <main className="app__content">
-          <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/about" element={<About />} />
-            <Route
-              path="/profile"
-              element={
-                <ProtectedRoute isLoggedIn={isLoggedIn}>
-                  <Profile
-                    currentUser={currentUser}
-                    handleSignout={handleSignout}
-                    openModal={openModal}
-                  />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-        </main>
-        <Footer />
-        {/*Modals*/}
-        <LoginModal
-          isOpen={activeModal === "login"}
-          closeActiveModal={closeModal}
-          handleSignUpModal={() => openModal("signup")}
-          onLogIn={handleLogin}
-        />
-        <SignUpModal
-          isOpen={activeModal === "signup"}
-          closeActiveModal={closeModal}
-          onRegister={handleSignUp}
-          openLoginModal={() => openModal("login")}
-        />
-        <EditProfileModal
-          isOpen={activeModal === "edit"}
-          closeActiveModal={closeModal}
-          onEditProfileSubmit={handleEditProfile}
-        />
-      </div>
+      <LikedSongsProvider>
+        <div className="app">
+          <Navigation
+            isLoggedIn={isLoggedIn}
+            handleLoginModal={() => openModal("login")}
+            handleSignUpModal={() => openModal("signup")}
+          />
+          <main className="app__content">
+            <Routes>
+              <Route path="/" element={<Main />} />
+              <Route path="/about" element={<About />} />
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <Profile
+                      currentUser={currentUser}
+                      handleSignout={handleSignout}
+                      openModal={openModal}
+                    />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </main>
+          <Footer />
+          {/*Modals*/}
+          <LoginModal
+            isOpen={activeModal === "login"}
+            closeActiveModal={closeModal}
+            handleSignUpModal={() => openModal("signup")}
+            onLogIn={handleLogin}
+          />
+          <SignUpModal
+            isOpen={activeModal === "signup"}
+            closeActiveModal={closeModal}
+            onRegister={handleSignUp}
+            openLoginModal={() => openModal("login")}
+          />
+          <EditProfileModal
+            isOpen={activeModal === "edit"}
+            closeActiveModal={closeModal}
+            onEditProfileSubmit={handleEditProfile}
+          />
+        </div>
+      </LikedSongsProvider>
     </CurrentUserContext.Provider>
   );
 }

@@ -1,22 +1,11 @@
 import "./SearchResults.css";
-import { useState } from "react";
+import { useContext } from "react";
+import { LikedSongsContext } from "../../contexts/LikedSongsContext";
 import headphonesLiked from "../../assets/headphones_liked.png";
 import headphonesUnliked from "../../assets/headphones_unliked.png";
 
 function SearchResults({ tracks }) {
-  const [likedTracks, setLikedTracks] = useState(new Set());
-
-  const toggleLike = (trackId) => {
-    setLikedTracks((prev) => {
-      const newLiked = new Set(prev);
-      if (newLiked.has(trackId)) {
-        newLiked.delete(trackId);
-      } else {
-        newLiked.add(trackId);
-      }
-      return newLiked;
-    });
-  };
+  const { likedSongs, toggleLike } = useContext(LikedSongsContext);
 
   return (
     <div className="search-results">
@@ -41,15 +30,19 @@ function SearchResults({ tracks }) {
               </div>
               <button
                 className="search-results__like-button"
-                onClick={() => toggleLike(track.id)}
+                onClick={() => toggleLike(track)}
               >
                 <img
                   src={
-                    likedTracks.has(track.id)
+                    likedSongs.some((song) => song.id === track.id)
                       ? headphonesLiked
                       : headphonesUnliked
                   }
-                  alt={likedTracks.has(track.id) ? "Unlike" : "Like"}
+                  alt={
+                    likedSongs.some((song) => song.id === track.id)
+                      ? "Unlike"
+                      : "Like"
+                  }
                   className="search-results__like-icon"
                 />
               </button>
