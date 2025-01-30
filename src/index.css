@@ -2,13 +2,9 @@
 @import url(./vendor/fonts.css);
 
 :root {
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  align-items: center;
-  background-color: #ef5b5b;
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  align-items: center;
+  background: linear-gradient(115deg, #ef5b5b, #700161);
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }

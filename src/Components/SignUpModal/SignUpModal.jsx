@@ -6,7 +6,7 @@ const SignUpModal = ({
   closeActiveModal,
   openLoginModal,
   isOpen,
-  onSignUp,
+  onRegister,
   buttonClass = "modal__submit",
 }) => {
   const [name, setName] = useState("");
@@ -38,7 +38,7 @@ const SignUpModal = ({
     if (!email || !password || !name) {
       return;
     }
-    onSignUp({
+    onRegister({
       email,
       password,
       name,
