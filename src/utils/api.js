@@ -1,22 +1,51 @@
 import { SPOTIFY_CONFIG } from "./config";
 
 let accessToken = null;
+let tokenExpirationTime = null;
 
 const getAccessToken = async () => {
   try {
+    // Check if token exists and is still valid
+    if (
+      accessToken &&
+      tokenExpirationTime &&
+      Date.now() < tokenExpirationTime
+    ) {
+      return accessToken;
+    }
+
+    // Debug log to check credentials
+    console.log("Client ID available:", !!SPOTIFY_CONFIG.CLIENT_ID);
+    console.log("Client Secret available:", !!SPOTIFY_CONFIG.CLIENT_SECRET);
+
+    const authString = btoa(
+      `${SPOTIFY_CONFIG.CLIENT_ID}:${SPOTIFY_CONFIG.CLIENT_SECRET}`
+    );
+
     const response = await fetch("https://accounts.spotify.com/api/token", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `Basic ${btoa(
-          `${SPOTIFY_CONFIG.CLIENT_ID}:${SPOTIFY_CONFIG.CLIENT_SECRET}`
-        )}`,
+        Authorization: `Basic ${authString}`,
       },
       body: "grant_type=client_credentials",
     });
 
+    if (!response.ok) {
+      const errorData = await response.text();
+      console.error("Spotify API Error:", {
+        status: response.status,
+        statusText: response.statusText,
+        error: errorData,
+      });
+      throw new Error(
+        `HTTP error! status: ${response.status}, details: ${errorData}`
+      );
+    }
+
     const data = await response.json();
     accessToken = data.access_token;
+    tokenExpirationTime = Date.now() + (data.expires_in - 60) * 1000;
     return accessToken;
   } catch (error) {
     console.error("Error getting access token:", error);
@@ -32,11 +61,35 @@ const ensureToken = async () => {
   return accessToken;
 };
 
-// Search for tracks
-export const searchSpotifyTracks = async (query) => {
+// Add error handling wrapper for API calls
+const handleApiCall = async (apiCall) => {
   try {
     const token = await ensureToken();
-    const response = await fetch(
+    const response = await apiCall(token);
+
+    if (response.status === 429) {
+      // Rate limit exceeded
+      const retryAfter = response.headers.get("Retry-After");
+      throw new Error(
+        `Rate limit exceeded. Try again in ${retryAfter} seconds`
+      );
+    }
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("API call failed:", error);
+    throw error;
+  }
+};
+
+// Search for tracks
+export const searchSpotifyTracks = async (query) => {
+  return handleApiCall(async (token) =>
+    fetch(
       `https://api.spotify.com/v1/search?q=${encodeURIComponent(
         query
       )}&type=track&limit=10`,
@@ -45,17 +98,8 @@ export const searchSpotifyTracks = async (query) => {
           Authorization: `Bearer ${token}`,
         },
       }
-    );
-
-    if (!response.ok) {
-      throw new Error("Failed to search tracks");
-    }
-    const data = await response.json();
-    return data.tracks.items;
-  } catch (error) {
-    console.error("Error searching tracks:", error);
-    throw error;
-  }
+    )
+  ).then((data) => data.tracks.items);
 };
 
 // Get track details
