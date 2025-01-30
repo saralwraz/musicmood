@@ -4,12 +4,12 @@
   align-items: center;
   width: 100%;
   margin: 0 auto;
+  font-family: "Cormorant Garamond", Times, serif;
+  color: white;
 }
 
 .main__headline {
   font-size: 2.5rem;
-  font-family: "Cormorant Garamond", Times, serif;
-  color: white;
   font-weight: 500;
   padding: 100px 0 0;
   margin: 0 auto;
@@ -26,12 +26,16 @@
 .main__subheading {
   font-family: "Cormorant Garamond", Times, serif;
   font-size: 1.5rem;
-  color: white;
   font-weight: 500;
   padding: 12px 0;
   margin: 0 auto;
   text-align: center;
   width: 90%;
+}
+
+.main__sub-subheading {
+  margin: 0;
+  color: #ffba49;
 }
 
 .main__text {
@@ -246,10 +250,5 @@
 
   .main__limit-message {
     font-size: 18px;
-  }
-
-  .main__submit {
-    height: 36px;
-    font-size: 14px;
   }
 }

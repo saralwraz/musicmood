@@ -73,7 +73,6 @@ function Main() {
 
     setIsLoading(true);
     try {
-      // Join keywords with spaces to create search query
       const searchQuery = keywords.join(" ");
       const tracks = await searchSpotifyTracks(searchQuery);
       setSearchResults(tracks);
@@ -92,6 +91,9 @@ function Main() {
       <h2 className="main__subheading">
         discover the perfect song for the moment
       </h2>
+      <h3 className="main__sub-subheading">
+        type in a keyword and press enter to begin.
+      </h3>
       <div className="main__input-container">
         <div className="main__input-row">
           <p className="main__text">I'm feeling</p>
