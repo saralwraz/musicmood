@@ -2,7 +2,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-position: url("../src/assets/musicmood-background.jpg");
+  background-position: url("../../assets/musicmood-background.jpg");
   background-repeat: no-repeat;
 }
 

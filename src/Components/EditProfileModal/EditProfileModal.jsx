@@ -10,7 +10,7 @@ const EditProfileModal = ({
 }) => {
   const currentUser = useContext(CurrentUserContext);
   const [name, setName] = useState("");
-  const [avatar, setavatar] = useState("");
+  const [avatar, setAvatar] = useState("");
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [errors, setErrors] = useState({ name: "", avatar: "" });
 
@@ -46,7 +46,7 @@ const EditProfileModal = ({
   }
 
   const handleNameChange = (e) => setName(e.target.value || "");
-  const handleAvatarChange = (e) => setavatar(e.target.value || "");
+  const handleAvatarChange = (e) => setAvatar(e.target.value || "");
 
   useEffect(() => {
     if (name.trim() && avatar.trim()) {
@@ -59,7 +59,7 @@ const EditProfileModal = ({
   useEffect(() => {
     if (currentUser) {
       setName(currentUser.name || "");
-      setavatar(currentUser.avatar || "");
+      setAvatar(currentUser.avatar || "");
     }
   }, [currentUser]);
 

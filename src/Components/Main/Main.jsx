@@ -68,20 +68,6 @@ function Main() {
 
   const showInput = keywords.length < MAX_KEYWORDS;
 
-  const handleMusicSearch = (searchTerm) => {
-    setIsLoading(true);
-    fetchMusicData(searchTerm)
-      .then((data) => {
-        setSearchResults(data);
-      })
-      .catch((error) => {
-        console.error("Search error:", error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
-
   const handleSubmit = async () => {
     if (keywords.length === 0) return;
 

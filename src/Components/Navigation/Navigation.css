@@ -34,7 +34,7 @@
 .navigation__nav {
   display: flex;
   gap: 25px;
-  align-items: right;
+  align-items: flex-end;
 }
 
 .navigation__link {
