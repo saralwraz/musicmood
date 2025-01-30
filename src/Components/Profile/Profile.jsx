@@ -11,7 +11,7 @@ function Profile({ currentUser, handleSignout, openModal }) {
       <Sidebar handleSignout={handleSignout} openModal={openModal} />
       <div className="profile__content">
         <section className="profile__liked-songs">
-          <h2>your liked songs</h2>
+          <h2 className="profile__liked-songs-header">your liked songs</h2>
           <LikedSongs userId={currentUser.id} />
         </section>
       </div>

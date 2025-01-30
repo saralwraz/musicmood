@@ -10,6 +10,7 @@
 .profile__content {
   flex: 1;
   font-family: "Cormorant Garamond", Times, serif;
+  margin-left: 310px;
 }
 
 .profile__signout-button {
@@ -22,11 +23,11 @@
   color: white;
 }
 
-.profile__liked-songs h2 {
+.profile__liked-songs-header {
   font-family: "Cormorant Garamond", Times, serif;
-  font-size: 32px;
+  font-size: 50px;
   color: #fff;
-  margin-bottom: 20px;
+  margin-left: 50px;
 }
 
 @media (max-width: 768px) {
