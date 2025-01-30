@@ -68,3 +68,9 @@
 .sidebar__button:hover {
   background-color: #ffba49;
 }
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 320px;
+  }
+}
