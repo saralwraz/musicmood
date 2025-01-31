@@ -92,7 +92,7 @@ function Main() {
         discover the perfect song for the moment
       </h2>
       <h3 className="main__sub-subheading">
-        type in a keyword and press enter to begin.
+        type in a keyword and press enter to begin. 3 moods max.
       </h3>
       <div className="main__input-container">
         <div className="main__input-row">
