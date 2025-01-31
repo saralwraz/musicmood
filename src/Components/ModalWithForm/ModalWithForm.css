@@ -123,6 +123,18 @@
   margin-top: 0;
 }
 
+.modal__input_error {
+  border-color: #ff4d4d;
+}
+
+.modal__error-message {
+  color: #ff4d4d;
+  font-size: 12px;
+  display: block;
+  margin-top: -15px;
+  margin-bottom: 15px;
+}
+
 @media (max-width: 480px) {
   .modal__close {
     top: -50px;

@@ -9,40 +9,64 @@ const SignUpModal = ({
   onRegister,
   buttonClass = "modal__submit",
 }) => {
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    avatar: "",
+  });
+  const [emailError, setEmailError] = useState("");
   const [isButtonActive, setIsButtonActive] = useState(false);
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   useEffect(() => {
-    setIsButtonActive(
-      email.trim() !== "" &&
-        password.trim() !== "" &&
-        name.trim() !== "" &&
-        avatar.trim() !== ""
+    const isValidEmail = validateEmail(formData.email);
+    setEmailError(
+      formData.email && !isValidEmail ? "Please enter a valid email" : ""
     );
-  }, [email, password, name, avatar]);
+
+    setIsButtonActive(
+      isValidEmail &&
+        formData.password.trim() !== "" &&
+        formData.name.trim() !== "" &&
+        formData.avatar.trim() !== ""
+    );
+  }, [formData]);
 
   useEffect(() => {
     if (isOpen) {
-      setName("");
-      setAvatar("");
-      setPassword("");
-      setEmail("");
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        avatar: "",
+      });
+      setEmailError("");
     }
   }, [isOpen]);
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!email || !password || !name) {
+    if (
+      !validateEmail(formData.email) ||
+      !formData.password ||
+      !formData.name
+    ) {
       return;
     }
-    onRegister({
-      email,
-      password,
-      name,
-    });
+    onRegister(formData);
   };
 
   return (
@@ -57,15 +81,18 @@ const SignUpModal = ({
         Email*
         <input
           type="email"
-          className="modal__input"
+          className={`modal__input ${emailError ? "modal__input_error" : ""}`}
           id="signup-email"
           name="email"
           placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={formData.email}
+          onChange={handleInputChange}
           required
           autoComplete="email"
         />
+        {emailError && (
+          <span className="modal__error-message">{emailError}</span>
+        )}
       </label>
       <label htmlFor="signup-password" className="modal__label">
         Password*
@@ -75,8 +102,8 @@ const SignUpModal = ({
           id="signup-password"
           name="password"
           placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={formData.password}
+          onChange={handleInputChange}
           required
           autoComplete="new-password"
         />
@@ -89,8 +116,8 @@ const SignUpModal = ({
           id="signup-name"
           name="name"
           placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={formData.name}
+          onChange={handleInputChange}
           required
           autoComplete="name"
         />
@@ -103,8 +130,8 @@ const SignUpModal = ({
           id="signup-avatar"
           name="avatar"
           placeholder="Avatar URL"
-          value={avatar}
-          onChange={(e) => setAvatar(e.target.value)}
+          value={formData.avatar}
+          onChange={handleInputChange}
           required
           autoComplete="url"
         />

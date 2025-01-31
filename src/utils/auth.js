@@ -1,33 +1,51 @@
 import { request } from "./api";
 
-const signup = (data) => {
-  return request(`signup`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+const signup = (userData) => {
+  // Store user data in localStorage
+  const users = JSON.parse(localStorage.getItem("users") || "[]");
+
+  // Check if email already exists
+  if (users.some((user) => user.email === userData.email)) {
+    return Promise.reject(new Error("Email already exists"));
+  }
+
+  const newUser = {
+    id: Date.now().toString(),
+    ...userData,
+  };
+
+  users.push(newUser);
+  localStorage.setItem("users", JSON.stringify(users));
+  return Promise.resolve(newUser);
 };
 
-const logIn = (data) => {
-  return request(`signin`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+const logIn = ({ email, password }) => {
+  const users = JSON.parse(localStorage.getItem("users") || "[]");
+  const user = users.find((u) => u.email === email && u.password === password);
+
+  if (!user) {
+    return Promise.reject(new Error("Invalid email or password"));
+  }
+
+  const token = `fake-token-${Date.now()}`;
+  localStorage.setItem("jwt", token);
+  return Promise.resolve({ token, user });
 };
 
-const getUserProfile = (token) => {
-  return request(`users/me`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
-  });
+const getUserProfile = () => {
+  const token = localStorage.getItem("jwt");
+  if (!token) {
+    return Promise.reject(new Error("No token found"));
+  }
+
+  const users = JSON.parse(localStorage.getItem("users") || "[]");
+  const currentUser = users.find((user) => `fake-token-${user.id}` === token);
+
+  if (!currentUser) {
+    return Promise.reject(new Error("User not found"));
+  }
+
+  return Promise.resolve(currentUser);
 };
 
 export const authorize = (email, password) => {

@@ -12,20 +12,31 @@ const LoginModal = ({
 }) => {
   const [data, setData] = useState({ email: "", password: "" });
   const [isButtonActive, setIsButtonActive] = useState(false);
+  const [emailError, setEmailError] = useState("");
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   useEffect(() => {
-    setIsButtonActive(data.email.trim() !== "" && data.password.trim() !== "");
+    const isValidEmail = validateEmail(data.email);
+    setEmailError(
+      data.email && !isValidEmail ? "Please enter a valid email" : ""
+    );
+    setIsButtonActive(isValidEmail && data.password.trim() !== "");
   }, [data.email, data.password]);
 
   useEffect(() => {
     if (isOpen) {
       setData({ email: "", password: "" });
+      setEmailError("");
     }
   }, [isOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!data.email || !data.password) {
+    if (!validateEmail(data.email) || !data.password) {
       return;
     }
     onLogIn({
@@ -51,7 +62,7 @@ const LoginModal = ({
         Email*
         <input
           type="email"
-          className="modal__input"
+          className={`modal__input ${emailError ? "modal__input_error" : ""}`}
           id="login-email"
           placeholder="Email"
           name="email"
@@ -62,6 +73,9 @@ const LoginModal = ({
           required
           autoComplete="email"
         />
+        {emailError && (
+          <span className="modal__error-message">{emailError}</span>
+        )}
       </label>
       <label htmlFor="login-password" className="modal__label">
         Password*
