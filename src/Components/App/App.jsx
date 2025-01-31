@@ -42,11 +42,10 @@ function App() {
       .then((data) => {
         if (!data.token) throw new Error("Token not received");
         localStorage.setItem("jwt", data.token);
-        return getUserProfile(data.token);
-      })
-      .then((user) => {
-        localStorage.setItem("user", JSON.stringify(user));
-        setCurrentUser(user);
+        if (data.user) {
+          localStorage.setItem("user", JSON.stringify(data.user));
+          setCurrentUser(data.user);
+        }
         setIsLoggedIn(true);
         navigate("/profile");
         closeModal();

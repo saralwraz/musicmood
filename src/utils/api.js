@@ -224,28 +224,50 @@ const MOCK_USER = {
     "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/1200px-Smiley.svg.png",
 };
 
-export const logIn = ({ email, password }) => {
-  return new Promise((resolve) => {
-    resolve({ token: "fake-auth-token-123" });
+export const signup = (userData) => {
+  // Create the new user object
+  const newUser = {
+    _id: `user-${Date.now()}`, // Generate a unique ID
+    name: userData.name,
+    email: userData.email,
+    avatar: userData.avatar,
+  };
+
+  // Store the new user in localStorage immediately
+  localStorage.setItem("user", JSON.stringify(newUser));
+
+  return Promise.resolve({
+    message: "Success",
+    user: newUser,
+    token: "fake-auth-token-123",
   });
 };
 
-export const signup = (userData) => {
-  return new Promise((resolve) => {
-    resolve({
-      message: "Success",
-      user: {
-        _id: "65f73a1b2c3d4e5f6g7h8i9j",
-        name: userData.name,
-        email: userData.email,
-      },
+export const logIn = ({ email, password }) => {
+  // Try to get stored user data
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+
+  // Only use MOCK_USER if no stored user exists AND it's the demo email
+  if (!storedUser && email === "demo@example.com") {
+    return Promise.resolve({
+      token: "fake-auth-token-123",
+      user: MOCK_USER,
     });
+  }
+
+  // Use stored user data from signup
+  return Promise.resolve({
+    token: "fake-auth-token-123",
+    user: storedUser,
   });
 };
 
 export const getUserProfile = (token) => {
+  // Get the stored user data if it exists, otherwise use demo user
+  const storedUser = JSON.parse(localStorage.getItem("user")) || MOCK_USER;
+
   return new Promise((resolve) => {
-    resolve(MOCK_USER);
+    resolve(storedUser);
   });
 };
 

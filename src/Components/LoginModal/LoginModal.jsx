@@ -11,34 +11,64 @@ const LoginModal = ({
   error = null,
 }) => {
   const [data, setData] = useState({ email: "", password: "" });
+  const [errors, setErrors] = useState({ email: "", password: "" });
   const [isButtonActive, setIsButtonActive] = useState(false);
-  const [emailError, setEmailError] = useState("");
 
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+  const validators = {
+    email: (value) => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(value) ? "" : "Please enter a valid email address";
+    },
+    password: (value) => {
+      if (value.length < 8)
+        return "Password must be at least 8 characters long";
+      return "";
+    },
+  };
+
+  const validateField = (name, value) => {
+    return validators[name] ? validators[name](value) : "";
   };
 
   useEffect(() => {
-    const isValidEmail = validateEmail(data.email);
-    setEmailError(
-      data.email && !isValidEmail ? "Please enter a valid email" : ""
+    const newErrors = {};
+    Object.keys(data).forEach((field) => {
+      if (data[field]) {
+        newErrors[field] = validateField(field, data[field]);
+      } else {
+        newErrors[field] = "";
+      }
+    });
+    setErrors(newErrors);
+
+    const hasErrors = Object.values(newErrors).some((error) => error !== "");
+    const allFieldsFilled = Object.values(data).every(
+      (value) => value.trim() !== ""
     );
-    setIsButtonActive(isValidEmail && data.password.trim() !== "");
-  }, [data.email, data.password]);
+    setIsButtonActive(allFieldsFilled && !hasErrors);
+  }, [data]);
 
   useEffect(() => {
     if (isOpen) {
       setData({ email: "", password: "" });
-      setEmailError("");
+      setErrors({ email: "", password: "" });
     }
   }, [isOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!validateEmail(data.email) || !data.password) {
+
+    // Validate all fields before submission
+    const newErrors = {};
+    Object.keys(data).forEach((field) => {
+      newErrors[field] = validateField(field, data[field]);
+    });
+    setErrors(newErrors);
+
+    if (Object.values(newErrors).some((error) => error !== "")) {
       return;
     }
+
     onLogIn({
       email: data.email,
       password: data.password,
@@ -62,7 +92,7 @@ const LoginModal = ({
         Email*
         <input
           type="email"
-          className={`modal__input ${emailError ? "modal__input_error" : ""}`}
+          className={`modal__input ${errors.email ? "modal__input_error" : ""}`}
           id="login-email"
           placeholder="Email"
           name="email"
@@ -73,17 +103,19 @@ const LoginModal = ({
           required
           autoComplete="email"
         />
-        {emailError && (
-          <span className="modal__error-message">{emailError}</span>
+        {errors.email && (
+          <span className="modal__error-message">{errors.email}</span>
         )}
       </label>
       <label htmlFor="login-password" className="modal__label">
         Password*
         <input
           type="password"
-          className="modal__input"
+          className={`modal__input ${
+            errors.password ? "modal__input_error" : ""
+          }`}
           id="login-password"
-          placeholder="Password"
+          placeholder="Password (minimum 8 characters)"
           name="password"
           value={data.password}
           onChange={(e) =>
@@ -92,6 +124,9 @@ const LoginModal = ({
           required
           autoComplete="current-password"
         />
+        {errors.password && (
+          <span className="modal__error-message">{errors.password}</span>
+        )}
       </label>
       {error && <div className="modal__error">{error}</div>}
       <div className="modal__buttons-wrapper">
@@ -100,6 +135,7 @@ const LoginModal = ({
           className={`${buttonClass} ${
             isButtonActive ? "modal__submit_complete" : ""
           }`}
+          disabled={!isButtonActive}
         >
           Log In
         </button>

@@ -15,26 +15,63 @@ const SignUpModal = ({
     password: "",
     avatar: "",
   });
-  const [emailError, setEmailError] = useState("");
+
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    password: "",
+    avatar: "",
+  });
+
   const [isButtonActive, setIsButtonActive] = useState(false);
 
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+  const validators = {
+    email: (value) => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(value) ? "" : "Please enter a valid email address";
+    },
+    password: (value) => {
+      if (value.length < 8)
+        return "Password must be at least 8 characters long";
+      return "";
+    },
+    name: (value) => {
+      if (value.length < 2) return "Name must be at least 2 characters long";
+      if (value.length > 30) return "Name must be less than 30 characters";
+      if (!/^[a-zA-Z\s-]+$/.test(value))
+        return "Name can only contain letters, spaces, and hyphens";
+      return "";
+    },
+    avatar: (value) => {
+      try {
+        new URL(value);
+        return "";
+      } catch {
+        return "Please enter a valid URL";
+      }
+    },
+  };
+
+  const validateField = (name, value) => {
+    return validators[name] ? validators[name](value) : "";
   };
 
   useEffect(() => {
-    const isValidEmail = validateEmail(formData.email);
-    setEmailError(
-      formData.email && !isValidEmail ? "Please enter a valid email" : ""
-    );
+    const newErrors = {};
+    Object.keys(formData).forEach((field) => {
+      if (formData[field]) {
+        newErrors[field] = validateField(field, formData[field]);
+      } else {
+        newErrors[field] = "";
+      }
+    });
+    setErrors(newErrors);
 
-    setIsButtonActive(
-      isValidEmail &&
-        formData.password.trim() !== "" &&
-        formData.name.trim() !== "" &&
-        formData.avatar.trim() !== ""
+    const hasErrors = Object.values(newErrors).some((error) => error !== "");
+    const allFieldsFilled = Object.values(formData).every(
+      (value) => value.trim() !== ""
     );
+    setIsButtonActive(allFieldsFilled && !hasErrors);
   }, [formData]);
 
   useEffect(() => {
@@ -45,7 +82,12 @@ const SignUpModal = ({
         password: "",
         avatar: "",
       });
-      setEmailError("");
+      setErrors({
+        name: "",
+        email: "",
+        password: "",
+        avatar: "",
+      });
     }
   }, [isOpen]);
 
@@ -59,13 +101,18 @@ const SignUpModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      !validateEmail(formData.email) ||
-      !formData.password ||
-      !formData.name
-    ) {
+
+    // Validate all fields before submission
+    const newErrors = {};
+    Object.keys(formData).forEach((field) => {
+      newErrors[field] = validateField(field, formData[field]);
+    });
+    setErrors(newErrors);
+
+    if (Object.values(newErrors).some((error) => error !== "")) {
       return;
     }
+
     onRegister(formData);
   };
 
@@ -81,7 +128,7 @@ const SignUpModal = ({
         Email*
         <input
           type="email"
-          className={`modal__input ${emailError ? "modal__input_error" : ""}`}
+          className={`modal__input ${errors.email ? "modal__input_error" : ""}`}
           id="signup-email"
           name="email"
           placeholder="Email"
@@ -90,51 +137,64 @@ const SignUpModal = ({
           required
           autoComplete="email"
         />
-        {emailError && (
-          <span className="modal__error-message">{emailError}</span>
+        {errors.email && (
+          <span className="modal__error-message">{errors.email}</span>
         )}
       </label>
       <label htmlFor="signup-password" className="modal__label">
         Password*
         <input
           type="password"
-          className="modal__input"
+          className={`modal__input ${
+            errors.password ? "modal__input_error" : ""
+          }`}
           id="signup-password"
           name="password"
-          placeholder="Password"
+          placeholder="Password (minimum 8 characters)"
           value={formData.password}
           onChange={handleInputChange}
           required
           autoComplete="new-password"
         />
+        {errors.password && (
+          <span className="modal__error-message">{errors.password}</span>
+        )}
       </label>
       <label htmlFor="signup-name" className="modal__label">
         Name*
         <input
           type="text"
-          className="modal__input"
+          className={`modal__input ${errors.name ? "modal__input_error" : ""}`}
           id="signup-name"
           name="name"
-          placeholder="Name"
+          placeholder="Name (2-30 characters, letters only)"
           value={formData.name}
           onChange={handleInputChange}
           required
           autoComplete="name"
         />
+        {errors.name && (
+          <span className="modal__error-message">{errors.name}</span>
+        )}
       </label>
       <label htmlFor="signup-avatar" className="modal__label">
         Avatar URL*
         <input
           type="url"
-          className="modal__input modal__input_signup"
+          className={`modal__input modal__input_signup ${
+            errors.avatar ? "modal__input_error" : ""
+          }`}
           id="signup-avatar"
           name="avatar"
-          placeholder="Avatar URL"
+          placeholder="Enter a valid URL for your avatar"
           value={formData.avatar}
           onChange={handleInputChange}
           required
           autoComplete="url"
         />
+        {errors.avatar && (
+          <span className="modal__error-message">{errors.avatar}</span>
+        )}
       </label>
       <div className="modal__buttons-container">
         <button
@@ -142,6 +202,7 @@ const SignUpModal = ({
           className={`${buttonClass} ${
             isButtonActive ? "modal__submit_filled" : ""
           }`}
+          disabled={!isButtonActive}
         >
           Sign Up
         </button>
