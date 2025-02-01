@@ -2,7 +2,6 @@ import { SPOTIFY_CONFIG } from "./config";
 
 const baseUrl = "http://localhost:3000";
 
-// Add checkResponse function directly in api.js
 const checkResponse = (res) => {
   if (res.ok) {
     return res.json();
@@ -80,11 +79,7 @@ const handleApiCall = async (apiCall) => {
       );
     }
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    return await response.json();
+    return checkResponse(response);
   } catch (error) {
     console.error("API call failed:", error);
     throw error;
@@ -119,11 +114,7 @@ export const getTrackDetails = async (trackId) => {
         },
       }
     );
-
-    if (!response.ok) {
-      throw new Error("Failed to get track details");
-    }
-    return await response.json();
+    return checkResponse(response);
   } catch (error) {
     console.error("Error getting track details:", error);
     throw error;
@@ -142,11 +133,7 @@ export const getSeveralTracks = async (trackIds) => {
         },
       }
     );
-
-    if (!response.ok) {
-      throw new Error("Failed to get tracks");
-    }
-    return await response.json();
+    return checkResponse(response);
   } catch (error) {
     console.error("Error getting tracks:", error);
     throw error;
@@ -164,11 +151,7 @@ export const likeSong = async (trackId) => {
       },
       body: JSON.stringify({ trackId }),
     });
-
-    if (!response.ok) {
-      throw new Error("Failed to like track");
-    }
-    return await response.json();
+    return checkResponse(response);
   } catch (error) {
     console.error("Error liking track:", error);
     throw error;
@@ -186,11 +169,7 @@ export const unlikeSong = async (trackId) => {
       },
       body: JSON.stringify({ trackId }),
     });
-
-    if (!response.ok) {
-      throw new Error("Failed to unlike track");
-    }
-    return await response.json();
+    return checkResponse(response);
   } catch (error) {
     console.error("Error unliking track:", error);
     throw error;
@@ -204,11 +183,7 @@ export const getUserLikedSongs = async () => {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
     });
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch liked songs");
-    }
-    return await response.json();
+    return checkResponse(response);
   } catch (error) {
     console.error("Error fetching liked songs:", error);
     throw error;
