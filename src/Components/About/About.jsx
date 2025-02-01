@@ -39,7 +39,8 @@ function About() {
               <a
                 href="https://elegant-peach-245.notion.site/Sara-Raz-Portfolio-146e2356136f80e798ebd7b3b05097ff?pvs=74"
                 className="about__link"
-                alt="link to portfolio"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 here.
               </a>
