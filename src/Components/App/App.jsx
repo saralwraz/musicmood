@@ -80,7 +80,7 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <LikedSongsProvider>
+      <LikedSongsProvider isLoggedIn={isLoggedIn}>
         <div className="app">
           <Navigation
             isLoggedIn={isLoggedIn}

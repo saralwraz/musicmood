@@ -1,53 +1,40 @@
 import { createContext, useState, useEffect } from "react";
 
-export const LikedSongsContext = createContext({
-  likedSongs: [],
-  toggleLike: () => {},
-  isLoading: false,
-  error: null,
-});
+export const LikedSongsContext = createContext();
 
-export function LikedSongsProvider({ children }) {
+export const LikedSongsProvider = ({ children, isLoggedIn }) => {
   const [likedSongs, setLikedSongs] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const savedSongs = localStorage.getItem("likedSongs");
-    if (savedSongs) {
-      setLikedSongs(JSON.parse(savedSongs));
+    if (isLoggedIn) {
+      const savedLikes = localStorage.getItem("likedSongs");
+      if (savedLikes) {
+        setLikedSongs(JSON.parse(savedLikes));
+      }
+    } else {
+      setLikedSongs([]);
     }
-  }, []);
+  }, [isLoggedIn]);
 
-  useEffect(() => {
-    localStorage.setItem("likedSongs", JSON.stringify(likedSongs));
-  }, [likedSongs]);
+  const toggleLike = (song) => {
+    if (!isLoggedIn) return;
 
-  const toggleLike = async (track) => {
-    try {
-      setIsLoading(true);
-      setError(null);
+    setLikedSongs((prevLikedSongs) => {
+      const isLiked = prevLikedSongs.some(
+        (likedSong) => likedSong.id === song.id
+      );
+      const newLikedSongs = isLiked
+        ? prevLikedSongs.filter((likedSong) => likedSong.id !== song.id)
+        : [...prevLikedSongs, song];
 
-      setLikedSongs((prev) => {
-        const exists = prev.some((song) => song.id === track.id);
-        if (exists) {
-          return prev.filter((song) => song.id !== track.id);
-        } else {
-          return [...prev, track];
-        }
-      });
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setIsLoading(false);
-    }
+      localStorage.setItem("likedSongs", JSON.stringify(newLikedSongs));
+      return newLikedSongs;
+    });
   };
 
   return (
-    <LikedSongsContext.Provider
-      value={{ likedSongs, toggleLike, isLoading, error }}
-    >
+    <LikedSongsContext.Provider value={{ likedSongs, toggleLike }}>
       {children}
     </LikedSongsContext.Provider>
   );
-}
+};
