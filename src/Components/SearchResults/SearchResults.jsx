@@ -1,17 +1,38 @@
 import "./SearchResults.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { LikedSongsContext } from "../../contexts/LikedSongsContext";
+import Preloader from "../Preloader/Preloader";
 import headphonesLiked from "../../assets/headphones_liked.png";
 import headphonesUnliked from "../../assets/headphones_unliked.png";
 
-function SearchResults({ tracks }) {
+function SearchResults({ tracks, isLoading, error }) {
   const { likedSongs, toggleLike } = useContext(LikedSongsContext);
+  const [visibleTracks, setVisibleTracks] = useState(3);
+  const MAX_TRACKS = 9;
+
+  const showMore = () => {
+    setVisibleTracks((prev) => Math.min(prev + 3, MAX_TRACKS));
+  };
+
+  if (isLoading) {
+    return <Preloader isLoading={true} />;
+  }
+
+  if (error) {
+    return <Preloader error={error} />;
+  }
+
+  if (!tracks || tracks.length === 0) {
+    return <Preloader isEmpty={true} />;
+  }
+
+  const displayedTracks = tracks.slice(0, Math.min(tracks.length, MAX_TRACKS));
 
   return (
     <div className="search-results">
       <h2 className="search-results__title">your matches</h2>
       <div className="search-results__grid">
-        {tracks.slice(0, 6).map((track) => (
+        {displayedTracks.slice(0, visibleTracks).map((track) => (
           <div key={track.id} className="search-results__card">
             <div className="search-results__image-container">
               <img
@@ -50,6 +71,11 @@ function SearchResults({ tracks }) {
           </div>
         ))}
       </div>
+      {visibleTracks < displayedTracks.length && (
+        <button className="search-results__more-button" onClick={showMore}>
+          Show more
+        </button>
+      )}
     </div>
   );
 }

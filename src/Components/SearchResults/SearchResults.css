@@ -115,6 +115,24 @@
   object-fit: contain;
 }
 
+.search-results__more-button {
+  font-family: "Roboto", Arial, sans-serif;
+  min-width: 152px;
+  height: 40px;
+  background-color: #ffba49;
+  color: #380030;
+  border: none;
+  border-radius: 20px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search-results__more-button:hover {
+  background-color: #380030;
+  color: #ffba49;
+}
+
 @media (max-width: 1024px) {
   .search-results__grid {
     grid-template-columns: repeat(2, 1fr);
