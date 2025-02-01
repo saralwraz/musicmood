@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./main.css";
 import Moods from "../Moods/Moods";
 import SearchResults from "../SearchResults/SearchResults";
-import { searchSpotifyTracks } from "../../utils/api";
+import { searchSpotifyTracks } from "../../utils/SpotifyApi";
 import Preloader from "../Preloader/Preloader";
 import Header from "../Header/Header";
 

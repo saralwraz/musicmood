@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { searchSpotifyTracks } from "../../utils/api";
+import { searchSpotifyTracks } from "../../utils/SpotifyApi";
 import moodSuggestions from "../Moods/Moods";
 import { LikedSongsContext } from "../../contexts/LikedSongsContext";
 import headphonesLiked from "../../assets/headphones_liked.png";

@@ -5,7 +5,7 @@ import {
   getUserProfile,
   signup,
   editUserProfile,
-} from "../../utils/api";
+} from "../../utils/SpotifyApi";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 import { LikedSongsProvider } from "../../contexts/LikedSongsContext";
