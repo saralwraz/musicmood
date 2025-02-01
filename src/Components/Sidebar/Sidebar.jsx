@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import "./Sidebar.css";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 
 function Sidebar({ handleSignout, openModal }) {
   const currentUser = useContext(CurrentUserContext);

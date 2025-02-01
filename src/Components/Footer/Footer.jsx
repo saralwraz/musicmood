@@ -9,8 +9,20 @@ function Footer() {
         Developed by Sara Raz. Powered by SpotifyAPI
       </p>
       <div className="footer__links">
-        <img className="footer__facebook" src={fblogo} alt="Facebook logo" />
-        <img className="footer__github" src={ghlogo} alt="Github logo" />
+        <a
+          href="https://www.facebook.com/ContentAndCreativity"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img className="footer__facebook" src={fblogo} alt="Facebook logo" />
+        </a>
+        <a
+          href="https://github.com/saralwraz"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img className="footer__github" src={ghlogo} alt="Github logo" />
+        </a>
       </div>
     </footer>
   );

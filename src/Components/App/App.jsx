@@ -7,7 +7,7 @@ import {
   editUserProfile,
 } from "../../utils/api";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 import { LikedSongsProvider } from "../../contexts/LikedSongsContext";
 
 //Components

@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import "./Navigation.css";
 import logo from "../../assets/musicmood.png";
 import mobileMenu from "../../assets/mobile-menu.png";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 import { useContext, useState, useEffect } from "react";
 
 function Navigation({ handleSignUpModal, handleLoginModal, isLoggedIn }) {
