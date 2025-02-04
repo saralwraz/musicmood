@@ -2,7 +2,7 @@
 
 ## The premise:
 
-Musicmood is a music matchmaking app that connects users to songs according to their interests and moods. Users can make an account, search for songs, and like them on their profile for later use. If you’re not sure how you’re feeling there’s even a random song button at the top of the home page. [link to ghpages](saralwraz.github.io/moodmusic).
+Musicmood is a music matchmaking app that connects users to songs according to their interests and moods. Users can make an account, search for songs, and like them on their profile for later use. If you’re not sure how you’re feeling there’s even a random song button at the top of the home page. [link to ghpages](saralwraz.github.io/musicmood).
 
 ## Tech Stack:
 
