@@ -1,0 +1,256 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  font-family: "Cormorant Garamond", Times, serif;
+  color: white;
+}
+
+.main__headline {
+  font-size: 2.5rem;
+  font-weight: 500;
+  padding: 100px 0 0;
+  margin: 0 auto;
+  text-align: center;
+  width: 90%;
+}
+
+.main__headline_mood {
+  color: #23001e;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.main__subheading {
+  font-family: "Cormorant Garamond", Times, serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding: 12px 0;
+  margin: 0 auto;
+  text-align: center;
+  width: 90%;
+}
+
+.main__sub-subheading {
+  margin: 0;
+  color: #ffba49;
+}
+
+.main__text {
+  font-family: "Cormorant Garamond", Times, serif;
+  color: white;
+  font-size: 1.25rem;
+  margin: 0;
+  margin-right: 10px;
+}
+
+.main__input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 20px 0;
+  position: relative;
+}
+
+.main__input-row {
+  display: flex;
+  align-items: center;
+}
+
+.main__input {
+  font-size: 1.25rem;
+  padding: 5px 10px;
+  border: none;
+  border-bottom: 2px solid #fff;
+  background: transparent;
+  color: white;
+  outline: none;
+  width: 150px;
+}
+
+.main__submit {
+  font-family: "Roboto", Arial, sans-serif;
+  min-width: 152px;
+  height: 40px;
+  background-color: #ffba49;
+  color: #380030;
+  border: none;
+  border-radius: 20px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.main__submit:hover {
+  background-color: #380030;
+  color: #ffba49;
+}
+
+.main__keywords-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.main__keyword-delete {
+  background-color: transparent;
+  border: none;
+  width: 20px;
+  height: 20px;
+  background-image: url("../../assets/x.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.main__keyword {
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 16px;
+  background-color: #23001e;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 10px;
+  font-size: 24px;
+}
+
+.main__input-wrapper {
+  position: relative;
+}
+
+.main__suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #23001e;
+  border-radius: 5px;
+  margin-top: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.main__suggestion-item {
+  padding: 8px 15px;
+  cursor: pointer;
+  color: white;
+  font-family: "Cormorant Garamond", Times, serif;
+  font-size: 24px;
+}
+
+.main__suggestion-item:hover {
+  background-color: #380030;
+}
+
+.main__limit-message {
+  font-family: "Cormorant Garamond", Times, serif;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 24px;
+  margin: 0;
+  padding: 5px 10px;
+  font-style: italic;
+}
+
+@media screen and (min-width: 481px) {
+  .main__headline {
+    font-size: 4rem;
+    padding: 150px 0 0;
+  }
+
+  .main__subheading {
+    font-size: 2rem;
+  }
+
+  .main__text {
+    font-size: 1.75rem;
+  }
+
+  .main__input {
+    font-size: 1.75rem;
+    width: 200px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .main__headline {
+    font-size: 6.25rem;
+    padding: 250px 0 0;
+  }
+
+  .main__subheading {
+    font-size: 3.125rem;
+  }
+
+  .main__text {
+    font-size: 2.188rem;
+  }
+
+  .main__input {
+    font-size: 2.188rem;
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main__input-container {
+    width: 90%;
+    margin: 20px auto;
+  }
+
+  .main__input-row {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .main__submit {
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .main__keywords-container {
+    position: relative;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .main__headline {
+    margin-top: 50px;
+  }
+
+  .main__keyword {
+    font-size: 18px;
+    padding: 4px 12px;
+  }
+
+  .main__input {
+    width: 100%;
+  }
+
+  .main__suggestion-item {
+    font-size: 18px;
+    padding: 6px 12px;
+  }
+
+  .main__limit-message {
+    font-size: 18px;
+  }
+}

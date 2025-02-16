@@ -1,0 +1,26 @@
+.footer {
+  display: flex;
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  justify-content: space-between;
+  padding: 250px 60px 0;
+  align-items: center;
+}
+
+.footer__text {
+  color: #ffba49;
+}
+
+.footer__links {
+  display: flex;
+  height: 24px;
+  width: 24px;
+  margin-right: 55px;
+}
+
+.footer__facebook {
+  padding-right: 24px;
+  height: 24px;
+  width: 24px;
+}

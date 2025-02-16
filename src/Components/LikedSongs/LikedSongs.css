@@ -1,9 +1,9 @@
-.search-results {
+.liked-songs {
   margin-top: 40px;
   padding: 20px;
 }
 
-.search-results__title {
+.liked-songs__title {
   font-family: "Cormorant Garamond", Times, serif;
   font-size: 100px;
   margin-bottom: 20px;
@@ -11,39 +11,35 @@
   color: #fff;
 }
 
-.search-results__grid {
+.liked-songs__grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
-  padding: 40px;
-  max-width: 1400px;
+  padding: 30px;
   margin: 0 auto;
-  justify-content: center;
+  width: 100%;
 }
 
-.search-results__card {
+.liked-songs__card {
   background: white;
   border-radius: 8px;
   overflow: hidden;
   transition: transform 0.2s ease;
   cursor: pointer;
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
 }
 
-.search-results__card:hover {
+.liked-songs__card:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.search-results__image-container {
+.liked-songs__image-container {
   width: 100%;
   padding-top: 100%;
   position: relative;
 }
 
-.search-results__image {
+.liked-songs__image {
   position: absolute;
   top: 0;
   left: 0;
@@ -52,20 +48,20 @@
   object-fit: cover;
 }
 
-.search-results__info {
+.liked-songs__info {
   padding: 15px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
 
-.search-results__text-content {
+.liked-songs__text-content {
   flex: 1;
   margin-right: 10px;
   min-width: 0;
 }
 
-.search-results__track-name {
+.liked-songs__track-name {
   font-family: "Roboto", Arial, sans-serif;
   font-size: 16px;
   font-weight: 100;
@@ -76,7 +72,7 @@
   text-overflow: ellipsis;
 }
 
-.search-results__artist {
+.liked-songs__artist {
   font-family: "Roboto", Arial, sans-serif;
   font-weight: 900;
   font-size: 14px;
@@ -87,7 +83,7 @@
   text-overflow: ellipsis;
 }
 
-.search-results__album {
+.liked-songs__album {
   font-family: "Roboto", Arial, sans-serif;
   font-size: 12px;
   font-weight: 100;
@@ -98,7 +94,7 @@
   text-overflow: ellipsis;
 }
 
-.search-results__like-button {
+.liked-songs__unlike-button {
   background: none;
   border: none;
   cursor: pointer;
@@ -109,55 +105,26 @@
   flex-shrink: 0;
 }
 
-.search-results__like-button:hover {
+.liked-songs__unlike-button:hover {
   transform: scale(1.1);
 }
 
-.search-results__like-icon {
+.liked-songs__unlike-icon {
   width: 24px;
   height: 24px;
   object-fit: contain;
 }
 
-.search-results__more-button {
-  font-family: "Roboto", Arial, sans-serif;
-  min-width: 152px;
-  height: 40px;
-  background-color: #ffba49;
-  color: #380030;
-  border: none;
-  border-radius: 20px;
-  padding: 0 24px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.search-results__more-button:hover {
-  background-color: #380030;
-  color: #ffba49;
-}
-
-@media (max-width: 1024px) {
-  .search-results__grid {
-    grid-template-columns: repeat(2, minmax(280px, 1fr));
-    gap: 25px;
-    padding: 30px;
-  }
-}
-
 @media (max-width: 768px) {
-  .search-results__grid {
-    grid-template-columns: repeat(2, minmax(250px, 1fr));
-    gap: 20px;
+  .liked-songs__grid {
     padding: 20px;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 480px) {
-  .search-results__grid {
-    grid-template-columns: minmax(250px, 1fr);
-    gap: 25px;
-    padding: 15px;
-    max-width: 400px;
+  .liked-songs__grid {
+    grid-template-columns: 1fr;
+    padding: 10px;
   }
 }

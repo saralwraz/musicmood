@@ -1,0 +1,173 @@
+.about {
+  font-family: "Cormorant Garamond", Times, serif;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 100px 120px 40px;
+  max-width: 1000px;
+}
+
+.about__content {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  padding-top: 68px;
+}
+
+.about__body_text {
+  font-size: 30px;
+  color: white;
+  width: 100%;
+  margin: 0;
+  padding: 150px 0 30px 0;
+}
+
+.about__body_text_bottom {
+  font-size: 30px;
+  color: white;
+  margin: 0;
+  flex: 1;
+}
+
+.about__body_logo {
+  font-weight: 700;
+  color: #380030;
+}
+
+.about__headline {
+  font-size: 50px;
+  color: white;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.about__search {
+  font-family: "Roboto", Arial, sans-serif;
+  min-width: 360px;
+  height: 64px;
+  background-color: #ffba49;
+  color: #380030;
+  border: none;
+  border-radius: 20px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.about__search:hover {
+  background-color: #380030;
+  color: #ffba49;
+}
+
+.about__wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+}
+
+.about__link {
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.about__link:hover {
+  color: #380030;
+}
+
+.about__text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  padding-left: 40px;
+}
+
+.about__Sara {
+  max-width: 45%;
+  height: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .about {
+    padding: 80px 40px 30px;
+    max-width: 90%;
+  }
+
+  .about__content {
+    gap: 30px;
+  }
+
+  .about__text-container {
+    padding-left: 20px;
+  }
+
+  .about__body_text,
+  .about__body_text_bottom {
+    font-size: 22px;
+    line-height: 1.4;
+  }
+
+  .about__headline {
+    font-size: 36px;
+  }
+
+  .about__search {
+    min-width: 260px;
+    height: 54px;
+    font-size: 16px;
+  }
+
+  .about__body_text {
+    padding: 80px 0 24px 0;
+  }
+
+  .about__Sara {
+    max-width: 40%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .about {
+    padding: 60px 20px 20px;
+  }
+
+  .about__content {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+  }
+
+  .about__Sara {
+    max-width: 80%;
+    margin-bottom: 20px;
+  }
+
+  .about__text-container {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .about__body_text,
+  .about__body_text_bottom {
+    font-size: 20px;
+  }
+
+  .about__headline {
+    font-size: 32px;
+  }
+
+  .about__search {
+    min-width: 240px;
+    height: 48px;
+    font-size: 14px;
+  }
+
+  .about__body_text {
+    padding: 80px 0 20px 0;
+  }
+}

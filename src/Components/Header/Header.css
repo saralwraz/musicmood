@@ -1,0 +1,89 @@
+.header {
+  width: 100%;
+  background-color: #20a39e;
+  padding: 20px;
+  color: white;
+  margin-top: 80px;
+  box-sizing: border-box;
+}
+
+.header__content {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.header__random-button {
+  font-family: "Roboto", Arial, sans-serif;
+  padding: 12px 24px;
+  background-color: #ffba49;
+  color: #380030;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.header__random-button:hover {
+  background-color: #380030;
+  color: #ffba49;
+  transform: scale(1.05);
+}
+
+.header__like-button {
+  background: transparent;
+  border: none;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.header__track-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.header__album-art {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.header__track-info {
+  flex-grow: 1;
+}
+
+.header__track-name {
+  font-size: 18px;
+  margin: 0 0 4px 0;
+}
+
+.header__artist {
+  font-size: 14px;
+  margin: 0;
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 768px) {
+  .header__content {
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 10px;
+  }
+
+  .header__track-card {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}

@@ -1,0 +1,147 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(35, 0, 30, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  z-index: 3;
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+.modal_opened {
+  visibility: visible;
+}
+
+.modal__heading {
+  font-family: "Roboto Black", Arial, sans-serif;
+  margin: 0 0 24px;
+  font-size: 24px;
+  line-height: 26px;
+  width: 100%;
+  max-width: 380px;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  position: relative;
+  padding: 28px 28px 36px;
+  max-width: 496px;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.modal__close {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  background-image: url("../../assets/modalX.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.modal__label {
+  display: flex;
+  flex-direction: column;
+  color: #20a39e;
+  font-size: 14px;
+  width: 100%;
+  max-width: 380px;
+}
+
+.modal__label_type_radio {
+  display: block;
+}
+
+.modal__input {
+  width: 100%;
+  display: block;
+  margin: 3px 0 24px;
+  padding-top: 8px;
+  border: none;
+  color: #23001e;
+  border-bottom: 1px solid #23001e;
+  box-sizing: border-box;
+}
+
+.modal__buttons-container {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal__submit {
+  margin: 32px 0 0;
+  width: 415px;
+  height: 64px;
+  color: #fff;
+  border: none;
+  background-color: #ffba49;
+  color: #23001e;
+  border-radius: 50px;
+  margin-bottom: 0;
+}
+
+.modal__submit_complete {
+  color: white;
+  background-color: #23001e;
+}
+
+.modal__submit:hover {
+  opacity: 0.6;
+}
+
+.modal__submit-invalid {
+  opacity: 0.3;
+}
+
+.modal__legend {
+  margin-bottom: 12px;
+}
+
+.modal__error {
+  color: #ff4d00;
+  padding: 0;
+  margin-top: 0;
+}
+
+.modal__input_error {
+  border-color: #ff4d4d;
+}
+
+.modal__error-message {
+  color: #ff4d4d;
+  font-size: 12px;
+  display: block;
+  margin-top: -15px;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 480px) {
+  .modal__close {
+    top: -50px;
+    right: -5px;
+  }
+
+  .modal__form {
+    width: 90%;
+  }
+}
